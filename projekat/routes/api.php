@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Laravel\Passport\Token;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,14 @@ Route::post('login', 'AuthController@login');
 Route::get('cities/popular', 'CityController@getPopular');
 Route::get('cities/{id}/attractions', 'CityController@getAttractions');
 Route::post('travel-terms/search', 'TravelTermController@search');
-Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware('auth:api')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
+
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{user_id}', [UserController::class, 'show']);
+
+/*Route::middleware('auth:api')->group(function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+});*/
