@@ -6,6 +6,10 @@ use App\Http\Controllers\AuthController;
 use Laravel\Passport\Token;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\TravelTermController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +29,10 @@ Route::post('login', 'AuthController@login');
 
 
 // Dodatne rute (primer za gradove)
+
+Route::get('/countries', [CountryController::class, 'index']);
+
+
 Route::get('cities/popular', 'CityController@getPopular');
 Route::get('cities/{id}/attractions', 'CityController@getAttractions');
 Route::post('travel-terms/search', 'TravelTermController@search');
@@ -36,6 +44,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user_id}', [UserController::class, 'show']);
 
-/*Route::middleware('auth:api')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
-});*/
+
