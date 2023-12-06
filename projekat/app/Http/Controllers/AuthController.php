@@ -3,82 +3,80 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use App\Models\User;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
-        }
 
         $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
         ]);
 
-        $client = Client::where('password_client', 1)->first();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-        $request->request->add([
-            'grant_type' => 'password',
-            'client_id' => $client->id,
-            'client_secret' => $client->secret,
-            'username' => $request->input('email'),
-            'password' => $request->input('password'),
-        ]);
-
-        $tokenRequest = Request::create('/oauth/token', 'post');
-
-        return app()->dispatch($tokenRequest);
+        return response()->json(['token' => $token], 201);
     }
 
+    public function __construct()
+{
+    $this->middleware('auth:sanctum')->except('register');
+}
+
+    /**
+     * Log in the user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
+        $request->validate([
+            'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = User::where('email', $request->email)->first();
+            $token = $user->createToken('auth_token')->plainTextToken;
+
+            return response()->json(['token' => $token]);
         }
 
-        $credentials = request(['email', 'password']);
-
-        if (!Auth::attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-
-        $client = Client::where('password_client', 1)->first();
-
-        $request->request->add([
-            'grant_type' => 'password',
-            'client_id' => $client->id,
-            'client_secret' => $client->secret,
-            'username' => $request->input('email'),
-            'password' => $request->input('password'),
+        throw ValidationException::withMessages([
+            'email' => ['Invalid credentials'],
         ]);
-
-        $tokenRequest = Request::create('/oauth/token', 'post');
-
-        return app()->dispatch($tokenRequest);
     }
 
+    /**
+     * Log out the user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
-        $accessToken = Auth::user()->token();
+        $request->user()->currentAccessToken()->delete();
 
-        
-        $accessToken->revoke();
-
-        return response()->json(['message' => 'Successfully logged out']);
-   
+        return response()->json(['message' => 'Logged out']);
     }
 }
