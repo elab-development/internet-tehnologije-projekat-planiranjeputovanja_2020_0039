@@ -17,3 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+
+// Ruta za registraciju korisnika
+Route::post('/register', [RegisterController::class, 'register']);
+
+// Ruta za prijavu korisnika
+Route::post('/login', [LoginController::class, 'login']);
+
+// Ruta za odjavu korisnika
+Route::post('/logout', [LogoutController::class, 'logout']);
+
