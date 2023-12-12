@@ -1,17 +1,22 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Http\Request;
 
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 
-use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\TravelTermController;
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +39,15 @@ use App\Http\Controllers\TravelTermController;
 Route::delete('users/{id}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
 */
 
-Route::middleware(['api', EnsureFrontendRequestsAreStateful::class])->group(function () {
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
-   
+Route::middleware(['authenticate'])->group(function () {
+    Route::post('/login', [LoginController::class, 'login']);
 });
+
+
+    Route::post('/register', [RegisterController::class, 'register']);
+   
+    Route::post('/logout', [LogoutController::class, 'logout']);
+ 
 
 Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
 
