@@ -13,10 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\TravelTermController;
-
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,15 +36,8 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::delete('users/{id}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
 */
 
-Route::middleware(['authenticate'])->group(function () {
-    Route::post('/login', [LoginController::class, 'login']);
-});
 
-
-    Route::post('/register', [RegisterController::class, 'register']);
-   
-    Route::post('/logout', [LogoutController::class, 'logout']);
- 
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
 
