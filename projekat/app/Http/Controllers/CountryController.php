@@ -22,7 +22,19 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     
+        $request->validate([
+            'name' => 'required|string|max:255'
+            
+        ]);
+
+        
+        $country = Country::create([
+            'name' => $request->input('name'),
+            
+        ]);
+
+        return response()->json(['data' => $country], 201);
     }
 
     /**

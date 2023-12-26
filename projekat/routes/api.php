@@ -31,11 +31,18 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::post('/logout', [AuthController::class, 'logout']);
+
+
 Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
 
 
 
-// Dodatne rute 
+Route::get('/cities', [CityController::class, 'index']);
+
+
+Route::post('/addcountries', [CountryController::class, 'store']);
+Route::post('/addcities', [CityController::class, 'store']);
 
 
 

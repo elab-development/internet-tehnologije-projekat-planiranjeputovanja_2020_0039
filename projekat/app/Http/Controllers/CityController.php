@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\City;
 
 class CityController extends Controller
 {
@@ -11,7 +12,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities = City::all();
+
+        return response()->json(['data' => $cities], 200);
     }
 
     /**
@@ -19,8 +22,21 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'country_id' => 'required|integer'
+        ]);
+
+       
+        $city = City::create([
+            'name' => $request->input('name'),
+            'country_id' => $request->input('country_id')
+        ]);
+
+        return response()->json(['data' => $city], 201);
     }
+
 
     /**
      * Display the specified resource.
