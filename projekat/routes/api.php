@@ -26,16 +26,6 @@ use App\Http\Controllers\API\AuthController;
 |
 */
 
-//Route::apiResource('countries', CountryController::class);
-
-
-
-// Rute za autentifikaciju
-
-/*Route::put('users/{id}', [UserController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('users/{id}', [UserController::class, 'destroy'])->middleware('auth:sanctum');
-*/
-
 
 Route::post('/register', [AuthController::class, 'register']);
 
