@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\AttractionController;
+
+Route::get('/attractions', [AttractionController::class, 'index']);
+Route::get('/attractions/{id}', [AttractionController::class, 'show']);
+// Dodajte i druge rute za ostale akcije po potrebi: create, store, edit, update, delete...
+
+
 
 Route::get('/', function () {
     return view('welcome');

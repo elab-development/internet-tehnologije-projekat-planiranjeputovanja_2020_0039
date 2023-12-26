@@ -14,7 +14,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\TravelTermController;
 use App\Http\Controllers\API\AuthController;
-
+use App\Http\Controllers\AttractionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +25,11 @@ use App\Http\Controllers\API\AuthController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+
+Route::get('/attractions', [AttractionController::class, 'index']);
+Route::get('/attractions/{id}', [AttractionController::class, 'show']);
+// Dodajte i druge rute za ostale akcije po potrebi: create, store, edit, update, delete...
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -43,7 +48,7 @@ Route::get('/cities', [CityController::class, 'index']);
 
 Route::post('/addcountries', [CountryController::class, 'store']);
 Route::post('/addcities', [CityController::class, 'store']);
-
+Route::post('/addattractions', [AttractionController::class, 'store']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
