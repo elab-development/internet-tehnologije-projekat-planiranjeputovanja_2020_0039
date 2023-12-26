@@ -12,42 +12,41 @@ use App\Models\User;
 class AuthController extends Controller
 {
     
-public function register(Request $request){
+    public function register(Request $reqest)
+    {
+        $validator = Validator::make($reqest->all(),[
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:2'
+        ]);
 
-    $validator = Validator::make($request->all(),[
-        'name' => 'required|string|max:255',
-        'email'=> 'required|string|email|max:255|unique:users',
-        'password'=> 'required|string|min:2'
-    ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());
+        }
 
-    if($validator->false()){
-        return response()->json($validator->errors());
+        $user = User::create([
+            'name'=> $reqest->name,
+            'email'=> $reqest->email,
+            'password'=> Hash::make($reqest->password)
+        ]);
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type'=> 'Bearer']);
     }
 
-    $users = User::create([
-        'name'=>$request->name,
-        'email'=>$request->email,
-        'password'=> Hash::make($request->password)
-    ]);
+    public function login(Request $request)
+    {
+        if(!Auth::attempt($request->only('email','password'))){
+            return response()->json(['message'=> 'Unauthorized'], 401);
+        }
 
-    $token = $user-> createToken('auth_token')->plainTextToken;
+        $user = User::where('email', $request['email'])->firstOrFail();
 
-    return respose()
-    ->json(['data'=>$user,'access_token'=>$token, 'token_type'=>'Bearer', ]);
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-}
-public function login(Request $request){
-    if(!Auth :: attempt ($request->only ('email', 'password'))){
-        return response() ->json (['message'=> 'Unauthorized'], 401);
+        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type'=> 'Bearer']);
     }
-
-    $user = User::where('email', $request['email'])->firstOrFail();
-
-    $token=$user->createToken ('auth_token')->plainTextToken;
-
-    return response() -> json (['message'=> 'Hi '.user->name.', welcome to home','access_token' =>$token, 'token_type' =>'Bearer']);
-}
-
 
 
 }
