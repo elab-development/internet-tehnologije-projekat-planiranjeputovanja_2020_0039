@@ -15,7 +15,7 @@ return new class extends Migration
     Schema::create('countries', function (Blueprint $table) {
         $table->id();
         $table->string('name', 100)->change();
-        $table->string('capital')->nullable();
+        
        
         $table->timestamps();
     });
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down(): void
     {
         $table->string('name')->change();
-        $table->dropColumn('capital');
+        
         Schema::dropIfExists('countries');
     }
 };

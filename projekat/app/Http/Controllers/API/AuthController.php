@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
+use Laravel\Passport\PersonalAccessTokenResult;
+
 class AuthController extends Controller
 {
     
-    public function register(Request $reqest)
+    public function register(Request $request)
     {
-        $validator = Validator::make($reqest->all(),[
+        $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:2'
@@ -25,14 +27,15 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name'=> $reqest->name,
-            'email'=> $reqest->email,
-            'password'=> Hash::make($reqest->password)
+            'name'=> $request->name,
+            'email'=> $request->email,
+            'password'=> Hash::make($request->password)
+            
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type'=> 'Bearer']);
+        
+        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type' => 'Bearer']);
     }
 
     public function login(Request $request)

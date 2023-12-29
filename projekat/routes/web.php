@@ -13,28 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\AttractionController;
 
-Route::get('/attractions', [AttractionController::class, 'index']);
-Route::get('/attractions/{id}', [AttractionController::class, 'show']);
-// Dodajte i druge rute za ostale akcije po potrebi: create, store, edit, update, delete...
-
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\LogoutController;
-
-// Ruta za registraciju korisnika
-Route::post('/register', [RegisterController::class, 'register']);
-
-// Ruta za prijavu korisnika
-Route::post('/login', [LoginController::class, 'login']);
-
-// Ruta za odjavu korisnika
-Route::post('/logout', [LogoutController::class, 'logout']);
 
