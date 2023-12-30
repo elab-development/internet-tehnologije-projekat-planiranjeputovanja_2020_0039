@@ -29,13 +29,21 @@ class AuthController extends Controller
         $user = User::create([
             'name'=> $request->name,
             'email'=> $request->email,
-            'password'=> Hash::make($request->password)
+            //'password'=> Hash::make($request->password)
+            'password' => bcrypt('password'),
+
             
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $tokenResult = $user->createToken('auth_token');
+
+        $token = $tokenResult->accessToken;
+    
+        return response()->json(['token' => $token], 201);
+
+        /*$token = $user->createToken('auth_token')->plainTextToken;
         
-        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type' => 'Bearer']);
+        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type' => 'Bearer']);*/
     }
 
     public function login(Request $request)
@@ -44,17 +52,31 @@ class AuthController extends Controller
             return response()->json(['message'=> 'Unauthorized'], 401);
         }
 
-        $user = User::where('email', $request['email'])->firstOrFail();
+        //$user = User::where('email', $request['email'])->firstOrFail();
+        try {
+            $user = Auth::user();
+             $token = $tokenResult->accessToken;
+    
+            return response()->json(['token' => $token], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $tokenResult = $user->createToken('auth_token');
 
-        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type'=> 'Bearer']);
+       
     }
 
     public function logout(Request $request)
     {
-       $request->user()->tokens()->delete();
-       return response()->json(['message'=> 'Successfully logged out!']);
+        $user = $request->user();
+
+        if ($user) {
+            $user->tokens()->delete();
+            return response()->json(['message' => 'Successfully logged out!']);
+        } else {
+            return response()->json(['message' => 'User not authenticated.'], 401);
+        }
     }
 
 
