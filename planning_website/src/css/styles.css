@@ -1,0 +1,67 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+    background-color: #8fbce0;
+    color: #333;
+    margin: 0;
+  }
+  
+  .header {
+    background-color: #2196F3;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .header-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff; /* White text color */
+    font-weight: 700; /* Bold */
+    font-size: 2rem; /* Adjust the font size as needed */
+    margin-bottom: 20px; /* Add some spacing */
+    margin-top: 30px;
+    border-bottom: 0px solid #3498db; /* Add an underline effect */
+    display: inline-block; /* Ensure the border does not take the full width */
+    padding-bottom: 5px; /* Adjust the padding as needed */
+    text-align: center; /* Center the text */
+    width: 100%; /* Ensure the text takes the full width */
+  }
+  
+  
+  .navbar {
+    background-color: #1565C0;
+    color: white;
+    padding: 10px;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .footer {
+    background-color: #2196F3;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .button {
+    background-color: #1565C0;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+  
+  /* Dodatne stilizacije prema potrebama */

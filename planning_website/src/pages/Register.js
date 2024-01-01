@@ -1,5 +1,7 @@
 import React from 'react';
 import RegisterForm from '../components/RegisterForm';
+import '../css/form.css';
+import '../css/styles.css';
 
 const Register = () => {
   const handleRegistration = async (userData) => {
@@ -28,9 +30,10 @@ const Register = () => {
 
   return (
     <div>
-      <h2>Register Page</h2>
+      <h2 className="header-title">Register</h2>
       <RegisterForm onSubmit={handleRegistration} />
     </div>
+  
   );
 };
 

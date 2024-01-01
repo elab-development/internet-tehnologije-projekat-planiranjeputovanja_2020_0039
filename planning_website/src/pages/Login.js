@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Form from '../components/Form';
+import '../css/form.css';
+import '../css/styles.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -27,7 +29,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+       <h2 className="header-title">LogIn</h2>
       <Form
         label="Email"
         type="text"
@@ -40,8 +42,11 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <div className="button-container">
       <button onClick={handleLogin}>Prijavi se</button>
     </div>
+    </div>
+    
   );
 };
 

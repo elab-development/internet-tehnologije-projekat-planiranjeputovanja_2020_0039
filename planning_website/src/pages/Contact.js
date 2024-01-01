@@ -4,7 +4,7 @@ const Contact = () => {
   // Implementacija kontakta
   return (
     <div>
-      <h2>Kontakt</h2>
+      <h2 className="header-title">Kontakt</h2>
       {/* Dodajte ostale komponente ili funkcionalnosti */}
     </div>
   );

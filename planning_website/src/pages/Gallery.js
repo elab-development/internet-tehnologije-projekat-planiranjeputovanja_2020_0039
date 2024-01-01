@@ -4,7 +4,7 @@ const Gallery = () => {
   // Implementacija galerije slika
   return (
     <div>
-      <h2>Galerija</h2>
+       <h2 className="header-title">Gallery</h2>
       {/* Dodajte ostale komponente ili funkcionalnosti */}
     </div>
   );

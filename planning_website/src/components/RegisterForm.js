@@ -1,6 +1,7 @@
 //eslint-disable-next-line
 import React, { useState } from 'react';
 import Form from './Form';
+import '../css/form.css';
 
 const RegisterForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -52,7 +53,7 @@ const RegisterForm = ({ onSubmit }) => {
 
   return (
     <div>
-      <h2>Register</h2>
+       <h2 className="header-title">Register</h2>
       <Form label="Name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
       <Form label="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       <Form
@@ -61,8 +62,9 @@ const RegisterForm = ({ onSubmit }) => {
         value={password}
         onChange={(e) => setPassword(String(e.target.value))}
       />
+      <div className="button-container">
      <button onClick={() => handleRegistration({ name, email, password })}>Register</button>
-
+</div>
     </div>
   );
 };

@@ -1,0 +1,73 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+    margin-top: 50px;
+ }
+
+div {
+    margin-bottom: 0px;
+    
+  }
+  
+label {
+    display: block;
+    font-style: 'Montserrat';
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  input {
+    width: 35%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+ 
+  div {
+    border-bottom: 0px solid #ccc;
+    padding-bottom: 10px;
+  }
+  
+
+  input:focus {
+    outline: 5px solid #ccc;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  }
+
+  button {
+    
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-style: 'Montserrat';
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+ 
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  }
