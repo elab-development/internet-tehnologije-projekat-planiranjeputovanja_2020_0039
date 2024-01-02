@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace app\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
-use Laravel\Passport\PersonalAccessTokenResult;
+use Laravel\Sanctum\Sanctum;
 
 class AuthController extends Controller
 {
@@ -29,7 +30,7 @@ class AuthController extends Controller
         $user = User::create([
             'name'=> $request->name,
             'email'=> $request->email,
-            //'password'=> Hash::make($request->password)
+            
             'password' => bcrypt($request->password),
 
             
@@ -41,10 +42,7 @@ class AuthController extends Controller
     
         return response()->json(['token' => $token], 201);
 
-        /*$token = $user->createToken('auth_token')->plainTextToken;
-        
-        return response()->json(['data'=> $user, 'access_token'=> $token, 'token_type' => 'Bearer']);*/
-    }
+            }
 
     public function login(Request $request)
     {
@@ -63,15 +61,18 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $user = $request->user();
-
-        if ($user) {
-            $user->tokens()->delete();
-            return response()->json(['message' => 'Successfully logged out!']);
-        } else {
-            return response()->json(['message' => 'User not authenticated.'], 401);
+        $user = auth()->user();
+        
+            if ($user) {
+                DB::table('personal_access_tokens')->where('tokenable_id', $user->id)->delete();
+                return response()->json(['message' => 'Successfully logged out!']);
+            } else {
+                return response()->json(['message' => 'User not authenticated.'], 401);
+            }
         }
     }
+    
+    
 
 
-}
+

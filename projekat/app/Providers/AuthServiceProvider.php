@@ -1,12 +1,19 @@
 <?php
 
 namespace App\Providers;
-
-// use Illuminate\Support\Facades\Gate;
+  use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
+  
+
+public function boot()
+{
+   
+}
+
     /**
      * The model to policy mappings for the application.
      *
@@ -19,8 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any authentication / authorization services.
      */
-    public function boot(): void
-    {
-        //
-    }
+    
 }
