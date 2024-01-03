@@ -3,8 +3,18 @@ import RegisterForm from '../components/RegisterForm';
 import '../css/form.css';
 import '../css/styles.css';
 
-const Register = () => {
-  const handleRegistration = async (userData) => {
+
+
+  const Register = () => {
+    const handleRegistration = (userData) => {
+      console.log('Registration successful:', userData);
+      
+    };
+  
+  
+  //NE DIRATI KOMENTAR, TO JE BACKEND KOD
+  
+  /*const handleRegistration = async (userData) => {
     try {
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -26,14 +36,12 @@ const Register = () => {
       console.error('Error during registration:', error);
       // Add logic for showing a general error message
     }
-  };
+  };*/
 
   return (
     <div>
-      <h2 className="header-title">Register</h2>
       <RegisterForm onSubmit={handleRegistration} />
     </div>
-  
   );
 };
 

@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import './css/form.css';
 import './css/navbar.css';
 import './css/styles.css';
-import RegisterForm from './components/RegisterForm'
+import Register from './pages/Register'
 import Planner from './pages/Planner';
 import Gallery from './pages/Gallery';
 

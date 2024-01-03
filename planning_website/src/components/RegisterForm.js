@@ -1,14 +1,26 @@
-//eslint-disable-next-line
+
 import React, { useState } from 'react';
 import Form from './Form';
 import '../css/form.css';
+import Button from '../components/Button';
 
 const RegisterForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-  const handleRegistration = async (userData) => {
+  const handleRegistration = () => {
+    setRegistrationSuccess(true);
+    if (onSubmit) {
+      onSubmit({ name, email, password });
+    }
+  };
+
+
+  //OVO JE BACKEND KOD, NE DIRATI!!!
+
+  /*const handleRegistration = async (userData) => {
     try {
 
       console.log('UserData:', userData);
@@ -31,7 +43,7 @@ const RegisterForm = ({ onSubmit }) => {
   
       if (response.ok) {
         console.log('Registration successful:', data);
-        // Add logic for redirecting or showing a success message
+        setRegistrationSuccess(true);
       } else {
         console.error('Registration failed:', data);
   
@@ -48,6 +60,10 @@ const RegisterForm = ({ onSubmit }) => {
     } catch (error) {
       console.error('Error during registration:', error);
     }
+  };*/
+
+  const closePopup = () => {
+    setRegistrationSuccess(false);
   };
   
 
@@ -63,8 +79,14 @@ const RegisterForm = ({ onSubmit }) => {
         onChange={(e) => setPassword(String(e.target.value))}
       />
       <div className="button-container">
-     <button onClick={() => handleRegistration({ name, email, password })}>Register</button>
+     <Button label="Registruj se" onClick={() => handleRegistration({ name, email, password })}></Button>
 </div>
+{registrationSuccess && (
+        <div className="popup">
+          <p>Uspešno ste se registrovali, {name}!</p>
+          <Button label="Zatvori" onClick={closePopup}/>
+          </div>
+      )}
     </div>
   );
 };

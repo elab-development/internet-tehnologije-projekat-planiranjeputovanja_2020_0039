@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import Form from '../components/Form';
 import '../css/form.css';
 import '../css/styles.css';
+import Button from '../components/Button';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
-  const handleLogin = async (userData) => {
+
+  /*const handleLogin = async (userData) => {
     try {
       const response = await fetch('/api/login', {
         method: 'POST',
@@ -24,7 +27,17 @@ const Login = () => {
     } catch (error) {
       console.error('Error during login:', error);
     }
+  };*/
+
+  const handleLogin = (userData) => {
+    console.log('Login successful:', userData);
+    setLoginSuccess(true);
   };
+
+  const closeLoginPopup = () => {
+    setLoginSuccess(false);
+  };
+  
   
 
   return (
@@ -43,8 +56,15 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       <div className="button-container">
-      <button onClick={handleLogin}>Prijavi se</button>
+      <Button label="Prijavi se" onClick={handleLogin}></Button>
     </div>
+    {loginSuccess && (
+  <div className="popup">
+    <p>Uspešno ste se prijavili!</p>
+    <Button label="Zatvori" onClick={closeLoginPopup} />
+  </div>
+)}
+
     </div>
     
   );

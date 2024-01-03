@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/travelform.css';
+import Button from '../components/Button';
 
 const TravelForm = () => {
   // State za državu i grad
@@ -126,7 +127,7 @@ const TravelForm = () => {
       <label className='travellabel' htmlFor="date">Datum putovanja:</label>
       <input className='travelinput' type="date" id="date" value={selectedDate} onChange={handleDateChange} />
 
-      <button className='travelbutton' type="submit">Pošalji</button>
+      <Button label="Pošalji" onClick={handleSubmit} />
       {generatedText && (
         <div>
           <label className='travellabel' htmlFor="generatedText">Vaš plan putovanja</label>

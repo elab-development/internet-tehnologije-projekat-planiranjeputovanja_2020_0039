@@ -63,5 +63,56 @@ body {
     margin-bottom: 20px;
     padding: 15px;
   }
+
+  /* styles.css */
+
+  .upper-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the height of the container to the full viewport height */
+  }
   
-  /* Dodatne stilizacije prema potrebama */
+  /* Style the gallery */
+  .gallery-container {
+    width: 80%; /* Adjust the width as needed */
+    max-width: 1200px; /* Limit the maximum width for larger screens */
+  }
+
+/* Style the gallery */
+.image-gallery {
+  width: 100%;
+  max-width: 800px; /* Adjust the maximum width as needed */
+  margin: 0 auto; }
+
+
+
+/* Style the image in the gallery */
+.image-gallery-image {
+  width: 100%;
+  max-height: 70vh; /* Set the maximum height of the image */
+}
+
+/* Optional: Add some spacing between the images */
+.image-gallery-slide img {
+  margin: 0 10px;
+}
+
+.image-gallery-left-nav, .image-gallery-right-nav {
+  font-size: 24px; /* Adjust the arrow size */
+  color: #333; /* Set the arrow color */
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    width: 90%; /* Adjust for smaller screens */
+  }
+
+  .image-gallery {
+    max-width: 90%; /* Adjust for smaller screens */
+  }
+
+  .image-gallery-image {
+    max-height: 50vh; /* Adjust the maximum height for smaller screens */
+  }
+}

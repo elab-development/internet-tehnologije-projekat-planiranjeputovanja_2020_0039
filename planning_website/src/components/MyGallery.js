@@ -1,5 +1,6 @@
 import React from 'react';
 import Gallery from 'react-image-gallery';
+import '../css/styles.css';
 
 const images = [
   {
@@ -27,9 +28,11 @@ const images = [
 
 const MyGallery = () => {
   return (
-    <div>
-      <h2>Galerija Atrakcija</h2>
-      <Gallery items={images} />
+    <div className="upper-container">
+      <div className="gallery-container">
+        <h2>Galerija Atrakcija</h2>
+        <Gallery items={images} />
+      </div>
     </div>
   );
 };
