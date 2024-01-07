@@ -30,7 +30,7 @@ class AuthController extends Controller
         $user = User::create([
             'name'=> $request->name,
             'email'=> $request->email,
-            
+
             'password' => bcrypt($request->password),
 
             
@@ -63,15 +63,15 @@ class AuthController extends Controller
     {
         $user = auth()->user();
         
-            if ($user) {
-                DB::table('personal_access_tokens')->where('tokenable_id', $user->id)->delete();
-                return response()->json(['message' => 'Successfully logged out!']);
-            } else {
-                return response()->json(['message' => 'User not authenticated.'], 401);
-            }
+        if ($user) {
+            DB::table('personal_access_tokens')->where('tokenable_id', $user->id)->delete();
+            return response()->json(['message' => 'Successfully logged out!']);
+        } 
+        else {
+            return response()->json(['message' => 'User not authenticated.'], 401);
         }
     }
-    
+}
     
 
 

@@ -39,7 +39,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
+  Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 
@@ -52,11 +52,12 @@ Route::apiResource('posts', PostController::class)->middleware('auth:sanctum');
 Route::get('/cities', [CityController::class, 'index']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-  Route::post('/addcountries', [CountryController::class, 'store']);
+Route::post('/addcountries', [CountryController::class, 'store']);
 Route::post('/addcities', [CityController::class, 'store']);
 Route::post('/addattractions', [AttractionController::class, 'store']);
   
 });
+
 
 
 

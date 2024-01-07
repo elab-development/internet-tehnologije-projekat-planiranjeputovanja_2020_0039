@@ -35,6 +35,7 @@ class AttractionController extends Controller
             'country_id' => $request->input('country_id'),
             'address'=> $request->input ('address')
         ]);
+    
 
         return response()->json(['data' => $attraction], 201);
     }
