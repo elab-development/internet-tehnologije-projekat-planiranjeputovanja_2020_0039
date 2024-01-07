@@ -1,0 +1,17 @@
+/* Galerija stilizacija */
+.container {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Stil za slike unutar galerije */
+  .img-fluid {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  

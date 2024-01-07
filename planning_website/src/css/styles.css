@@ -70,6 +70,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    align-items: flex-start;
     height: 100vh; /* Set the height of the container to the full viewport height */
   }
   
@@ -81,9 +82,16 @@ body {
 
 /* Style the gallery */
 .image-gallery {
-  width: 100%;
-  max-width: 800px; /* Adjust the maximum width as needed */
-  margin: 0 auto; }
+  width: 100%; 
+  max-width: 100%; /* Adjust the maximum width as needed */
+  margin: 0 auto; 
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Opciono: dodaj razmak između slika */
+}
 
 
 

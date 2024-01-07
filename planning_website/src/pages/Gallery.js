@@ -6,8 +6,9 @@ const Gallery = () => {
   return (
     <div>
        <h2 className="header-title">Gallery</h2>
-       <MyGallery />   
+       <MyGallery /> 
         </div>
+        
   );
 };
 
