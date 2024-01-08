@@ -1,0 +1,62 @@
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  input,
+  textarea {
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 1.1em;
+  }
+  /* styles.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('/public/images/pozadina.jpg'); /* Zamijeni putanju/do/slike.jpg s pravom putanjom do tvoje slike */
+  background-size: cover; /* Da bi slika popunila cijelu pozadinu */
+  background-position: center; /* Da bi slika bila centrirana */
+  /* Ostali stilovi po potrebi */
+}
+
+  button {
+    padding: 8px 16px;
+    background-color: #f56e30;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  /* Contact.css */
+
+.contact-container {
+  text-align: center; /* Postavljanje teksta u sredinu */
+}
+
+.contact-title {
+  /* Stilizacija naslova */
+  margin-bottom: 20px; /* Opcionalno: dodavanje razmaka ispod naslova */
+  /* Dodatni stilizacijski atributi prema potrebi */
+  font-size: 2em;
+}
+
+.container {
+  display: flex;
+  justify-content: center; /* Horizontalno centriranje */
+  align-items: center; /* Vertikalno centriranje */
+  height: 100vh; /* Visina cijelog ekrana */
+  /* Dodatni stilovi po potrebi */
+  font-size: 1.5em;
+}
+
+.content {
+  text-align: center; /* Postavljanje teksta na sredinu */
+  /* Ostali stilovi po potrebi */
+}

@@ -1,39 +1,62 @@
 import React from 'react';
-import Gallery from 'react-image-gallery';
-import '../css/styles.css';
+import { Container, Row, Col, Image } from 'react-bootstrap';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import '../css/MyGallery.css';
 
-const images = [
-  {
-    original: '/images/milan1.jpg',
-    thumbnail: '/images/milan1.jpg',
-    description: 'Milan 1',
-  },
-  {
-    original: '/images/milan2.jpg.webp',
-    thumbnail: '/images/milan2.jpg.webp',
-    description: 'Milan 2',
-  },
-  {
-    original: '/images/rim1.jpg',
-    thumbnail: '/images/rim1.jpg',
-    description: 'Rim 1',
-  },
-  {
-    original: '/images/rim2.jpg',
-    thumbnail: '/images/rim2.jpg',
-    description: 'Rim 2',
-  },
-  // Dodajte slike prema potrebi
-];
+
 
 const MyGallery = () => {
+  const images = [
+    {
+      original: '/images/milan1.jpg',
+      thumbnail: '/images/milan1.jpg',
+      description: 'Duomo di Milano',
+    },
+    {
+      original: '/images/milano4.jpg',
+      thumbnail: '/images/milano4.jpg',
+      description: 'Milan',
+    },
+    {
+      original: '/images/rim1.jpg',
+      thumbnail: '/images/rim1.jpg',
+      description: 'Colosseum',
+    },
+    {
+      original: '/images/rim2.jpg',
+      thumbnail: '/images/rim2.jpg',
+      description: 'Roman Forum',
+    },
+    {
+      original: '/images/Turska1.jpg',
+      thumbnail: '/images/Turska1.jpg',
+      description: 'Turkey',
+
+    },
+    {
+      original: '/images/Turska2.jpg',
+      thumbnail: '/images/Turska2.jpg',
+      description: 'Turkey',
+    },{
+      original: '/images/Turska3.jpg',
+      thumbnail: '/images/Turska3.jpg',
+      description: 'Turkey',
+    }
+  ];
+  const galleryImages = images.map(image => ({
+    original: image.original,
+    thumbnail: image.thumbnail,
+    description: image.description,
+  }));
   return (
-    <div className="upper-container">
-      <div className="gallery-container">
-        <h2>Galerija Atrakcija</h2>
-        <Gallery items={images} />
-      </div>
-    </div>
+    <Container>
+      <Row>
+        <Col xs={12}>
+          <ImageGallery items={galleryImages} />
+        </Col>
+      </Row>
+  </Container>  
   );
 };
 
