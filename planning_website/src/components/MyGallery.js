@@ -27,6 +27,21 @@ const MyGallery = () => {
       original: '/images/rim2.jpg',
       thumbnail: '/images/rim2.jpg',
       description: 'Roman Forum',
+    },
+    {
+      original: '/images/Turska1.jpg',
+      thumbnail: '/images/Turska1.jpg',
+      description: 'Turska',
+
+    },
+    {
+      original: '/images/Turska2.jpg',
+      thumbnail: '/images/Turska2.jpg',
+      description: 'Turska',
+    },{
+      original: '/images/Turska3.jpg',
+      thumbnail: '/images/Turska3.jpg',
+      description: 'Turska',
     }
   ];
   const galleryImages = images.map(image => ({
