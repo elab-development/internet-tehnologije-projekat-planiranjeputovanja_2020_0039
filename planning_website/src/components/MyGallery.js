@@ -36,7 +36,6 @@ const MyGallery = () => {
   }));
   return (
     <Container>
-   <h2>Naša galerija</h2>
       <Row>
         <Col xs={12}>
           <ImageGallery items={galleryImages} />

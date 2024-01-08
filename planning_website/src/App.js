@@ -8,6 +8,7 @@ import './css/styles.css';
 import Register from './pages/Register'
 import Planner from './pages/Planner';
 import Gallery from './pages/Gallery';
+import Contact from './pages/Contact'; 
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register/>} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact/>} />
         {/* Dodajte rute za ostale stranice */}
       </Routes>
     </Router>
