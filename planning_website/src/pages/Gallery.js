@@ -5,7 +5,7 @@ const Gallery = () => {
   
   return (
     <div>
-       <h2 className="header-title">Gallery</h2>
+       <h2 className="header-title">Najlepše iz gradova</h2>
        <MyGallery /> 
         </div>
         

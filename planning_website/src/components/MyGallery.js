@@ -14,8 +14,8 @@ const MyGallery = () => {
       description: 'Duomo di milano',
     },
     {
-      original: '/images/milan2.jpg.webp',
-      thumbnail: '/images/milan2.jpg.webp',
+      original: '/images/milano4.jpg',
+      thumbnail: '/images/milano4.jpg',
       description: 'Milan',
     },
     {
