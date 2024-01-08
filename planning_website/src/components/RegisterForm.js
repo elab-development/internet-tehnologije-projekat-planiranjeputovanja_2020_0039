@@ -69,7 +69,7 @@ const RegisterForm = ({ onSubmit }) => {
 
   return (
     <div>
-       <h2 className="header-title">Register</h2>
+       <h2 className="header-title">Registracija</h2>
       <Form label="Name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
       <Form label="Email" type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
       <Form

@@ -15,11 +15,11 @@ const Navbar = () => {
       <ul>
         <li><Link to="/">Planer putovanja</Link></li>
         <li onClick={toggleDropdown}>
-        <span className="join-link">Join</span>
+        <span className="join-link">Pridruži se</span>
           {isDropdownOpen && (
             <ul className="dropdown-menu">
               <li><Link to="/login">Login</Link></li>
-              <li><Link to="/register">Register</Link></li>
+              <li><Link to="/register">Registracija</Link></li>
             </ul>
           )}
         </li>
