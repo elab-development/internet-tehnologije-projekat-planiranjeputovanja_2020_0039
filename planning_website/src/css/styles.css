@@ -6,7 +6,7 @@ body {
   }
   
   .header {
-    background-color: #2196F3;
+    background-color: #f56e30;
     color: white;
     padding: 15px;
     text-align: center;
@@ -19,7 +19,7 @@ body {
     font-size: 2rem; /* Adjust the font size as needed */
     margin-bottom: 20px; /* Add some spacing */
     margin-top: 30px;
-    border-bottom: 0px solid #3498db; /* Add an underline effect */
+    border-bottom: 0px solid #f56e30; /* Add an underline effect */
     display: inline-block; /* Ensure the border does not take the full width */
     padding-bottom: 5px; /* Adjust the padding as needed */
     text-align: center; /* Center the text */
@@ -43,14 +43,14 @@ body {
   }
   
   .footer {
-    background-color: #2196F3;
+    background-color: #f56e30;
     color: white;
     padding: 10px;
     text-align: center;
   }
   
   .button {
-    background-color: #1565C0;
+    background-color: #f56e30;
     color: white;
     padding: 10px 15px;
     text-decoration: none;

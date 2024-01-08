@@ -26,7 +26,7 @@ a {
 }
 
 a:hover {
-  background-color: #2980b9;
+  background-color: #f56e30;
 }
 
 /* Dropdown Menu Styles */
@@ -36,7 +36,7 @@ a:hover {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #3498db;
+  background-color: #f56e30;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;
@@ -54,7 +54,7 @@ a:hover {
   display: block; /* Ensure full width and block-level */
 }
 .dropdown-menu a:hover {
-  background-color: #2980b9;
+  background-color: #f56e30;
 }
 
 .join-link {
@@ -67,7 +67,7 @@ a:hover {
 }
 
 .join-link:hover {
-  background-color: #2980b9;
+  background-color: #f56e30;
 }
 
 /* Responsive Styles */
