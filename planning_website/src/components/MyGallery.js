@@ -11,7 +11,7 @@ const MyGallery = () => {
     {
       original: '/images/milan1.jpg',
       thumbnail: '/images/milan1.jpg',
-      description: 'Duomo di milano',
+      description: 'Duomo di Milano',
     },
     {
       original: '/images/milano4.jpg',
@@ -31,17 +31,17 @@ const MyGallery = () => {
     {
       original: '/images/Turska1.jpg',
       thumbnail: '/images/Turska1.jpg',
-      description: 'Turska',
+      description: 'Turkey',
 
     },
     {
       original: '/images/Turska2.jpg',
       thumbnail: '/images/Turska2.jpg',
-      description: 'Turska',
+      description: 'Turkey',
     },{
       original: '/images/Turska3.jpg',
       thumbnail: '/images/Turska3.jpg',
-      description: 'Turska',
+      description: 'Turkey',
     }
   ];
   const galleryImages = images.map(image => ({
