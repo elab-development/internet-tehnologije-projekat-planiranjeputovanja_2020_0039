@@ -16,10 +16,10 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: url('/public/images/pozadina.jpg'); /* Zamijeni putanju/do/slike.jpg s pravom putanjom do tvoje slike */
-  background-size: cover; /* Da bi slika popunila cijelu pozadinu */
-  background-position: center; /* Da bi slika bila centrirana */
-  /* Ostali stilovi po potrebi */
+  background-image: url('/public/images/pozadina.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+
 }
 
   button {
@@ -37,26 +37,25 @@ body {
   /* Contact.css */
 
 .contact-container {
-  text-align: center; /* Postavljanje teksta u sredinu */
+  text-align: center; 
 }
 
 .contact-title {
-  /* Stilizacija naslova */
-  margin-bottom: 20px; /* Opcionalno: dodavanje razmaka ispod naslova */
-  /* Dodatni stilizacijski atributi prema potrebi */
+  
+  margin-bottom: 20px; 
+ 
   font-size: 2em;
 }
 
 .container {
   display: flex;
-  justify-content: center; /* Horizontalno centriranje */
-  align-items: center; /* Vertikalno centriranje */
-  height: 100vh; /* Visina cijelog ekrana */
-  /* Dodatni stilovi po potrebi */
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
+  
   font-size: 1.5em;
 }
 
 .content {
-  text-align: center; /* Postavljanje teksta na sredinu */
-  /* Ostali stilovi po potrebi */
+  text-align: center; 
 }

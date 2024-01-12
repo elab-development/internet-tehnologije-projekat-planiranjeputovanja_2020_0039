@@ -14,16 +14,16 @@ body {
 
   .header-title {
     font-family: 'Montserrat', sans-serif;
-    color: #ffffff; /* White text color */
-    font-weight: 700; /* Bold */
-    font-size: 2rem; /* Adjust the font size as needed */
-    margin-bottom: 20px; /* Add some spacing */
+    color: #ffffff; 
+    font-weight: 700; 
+    font-size: 2rem;
+    margin-bottom: 20px; 
     margin-top: 30px;
-    border-bottom: 0px solid #f56e30; /* Add an underline effect */
-    display: inline-block; /* Ensure the border does not take the full width */
-    padding-bottom: 5px; /* Adjust the padding as needed */
-    text-align: center; /* Center the text */
-    width: 100%; /* Ensure the text takes the full width */
+    border-bottom: 0px solid #f56e30; 
+    display: inline-block; 
+    padding-bottom: 5px; 
+    text-align: center; 
+    width: 100%; 
   }
   
   
@@ -64,63 +64,62 @@ body {
     padding: 15px;
   }
 
-  /* styles.css */
 
   .upper-container {
     display: flex;
     justify-content: center;
     align-items: center;
     align-items: flex-start;
-    height: 100vh; /* Set the height of the container to the full viewport height */
+    height: 100vh; 
   }
   
-  /* Style the gallery */
+  
   .gallery-container {
-    width: 80%; /* Adjust the width as needed */
-    max-width: 1200px; /* Limit the maximum width for larger screens */
+    width: 80%; 
+    max-width: 1200px; 
   }
 
-/* Style the gallery */
+
 .image-gallery {
   width: 100%; 
-  max-width: 100%; /* Adjust the maximum width as needed */
+  max-width: 100%; 
   margin: 0 auto; 
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Opciono: dodaj razmak između slika */
+  gap: 10px; 
 }
 
 
 
-/* Style the image in the gallery */
+
 .image-gallery-image {
   width: 100%;
-  max-height: 70vh; /* Set the maximum height of the image */
+  max-height: 70vh; 
 }
 
-/* Optional: Add some spacing between the images */
+
 .image-gallery-slide img {
   margin: 0 10px;
 }
 
 .image-gallery-left-nav, .image-gallery-right-nav {
-  font-size: 24px; /* Adjust the arrow size */
-  color: #333; /* Set the arrow color */
+  font-size: 24px; 
+  color: #333; 
 }
 
 @media (max-width: 768px) {
   .gallery-container {
-    width: 90%; /* Adjust for smaller screens */
+    width: 90%; 
   }
 
   .image-gallery {
-    max-width: 90%; /* Adjust for smaller screens */
+    max-width: 90%; 
   }
 
   .image-gallery-image {
-    max-height: 50vh; /* Adjust the maximum height for smaller screens */
+    max-height: 50vh; 
   }
 }

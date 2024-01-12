@@ -18,9 +18,8 @@ const ContactForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ovdje možeš dodati logiku za slanje podataka, npr. preko API-ja ili nečeg drugog
     console.log('Podaci:', formData);
-    // Nakon slanja podataka možeš resetirati formu
+
     setFormData({
       name: '',
       email: '',

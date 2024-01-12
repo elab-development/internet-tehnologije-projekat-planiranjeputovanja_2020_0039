@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/register" element={<Register/>} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact/>} />
-        {/* Dodajte rute za ostale stranice */}
+        {}
       </Routes>
     </Router>
   );

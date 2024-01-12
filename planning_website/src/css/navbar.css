@@ -13,7 +13,7 @@ ul {
 
 li {
   margin: 0;
-  position: relative; /* Added for positioning the dropdown */
+  position: relative; 
 }
 
 a {
@@ -29,7 +29,7 @@ a:hover {
   background-color: #f56e30;
 }
 
-/* Dropdown Menu Styles */
+
 .dropdown-menu {
   display: flex;
   flex-direction: column;
@@ -46,12 +46,12 @@ a:hover {
 
 .dropdown-menu li {
   margin: 0;
-  margin-bottom: 5px; /* Adjust the value as needed */
+  margin-bottom: 5px; 
 }
 
 .dropdown-menu a {
   padding: 10px 15px;
-  display: block; /* Ensure full width and block-level */
+  display: block; 
 }
 .dropdown-menu a:hover {
   background-color: #f56e30;
@@ -70,7 +70,7 @@ a:hover {
   background-color: #f56e30;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
   ul {
     flex-direction: column;

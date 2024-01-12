@@ -1,4 +1,4 @@
-/* Galerija stilizacija */
+
 .container {
     margin-top: 20px;
   }
@@ -8,7 +8,7 @@
     margin-bottom: 30px;
   }
   
-  /* Stil za slike unutar galerije */
+ 
   .img-fluid {
     width: 100%;
     height: auto;
