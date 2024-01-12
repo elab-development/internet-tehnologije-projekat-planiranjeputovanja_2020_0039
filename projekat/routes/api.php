@@ -26,7 +26,7 @@ use App\Http\Controllers\AttractionController;
 |
 */
 
-//Sanctum::routes();
+Route::resource('travel-terms', TravelTermController::class);
 
 Route::get('/attractions', [AttractionController::class, 'index']);
 Route::get('/attractions/{id}', [AttractionController::class, 'show']);

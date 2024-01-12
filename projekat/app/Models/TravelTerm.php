@@ -9,4 +9,14 @@ class TravelTerm extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }
