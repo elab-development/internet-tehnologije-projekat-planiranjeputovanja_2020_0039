@@ -1,48 +1,63 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\TravelTerm;
 
 use Illuminate\Http\Request;
 
 class TravelTermController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $travelTerms = TravelTerm::with(['city', 'country'])->get();
+        return response()->json(['travel_terms' => $travelTerms]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'city_id' => 'required|exists:cities,id',
+            'country_id' => 'required|exists:countries,id',
+        ]);
+
+        $travelTerm = TravelTerm::create($request->all());
+
+        return response()->json(['travel_term' => $travelTerm], 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
+   
     public function show(string $id)
     {
-        //
+        $travelTerm = TravelTerm::with(['city', 'country'])->findOrFail($id);
+        return response()->json(['travel_term' => $travelTerm]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(Request $request, string $id)
     {
-        //
+        $travelTerm = TravelTerm::findOrFail($id);
+
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'city_id' => 'required|exists:cities,id',
+            'country_id' => 'required|exists:countries,id',
+        ]);
+
+        $travelTerm->update($request->all());
+
+        return response()->json(['travel_term' => $travelTerm]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   
     public function destroy(string $id)
     {
-        //
+        $travelTerm = TravelTerm::findOrFail($id);
+        $travelTerm->delete();
+
+        return response()->json(['message' => 'Travel term successfully deleted']);
     }
 }
+

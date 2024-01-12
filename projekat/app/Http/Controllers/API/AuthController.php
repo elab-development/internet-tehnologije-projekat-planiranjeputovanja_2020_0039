@@ -31,14 +31,14 @@ class AuthController extends Controller
             'name'=> $request->name,
             'email'=> $request->email,
 
-            'password' => bcrypt($request->password),
+            'password' =>Hash::make($request->password)
 
             
         ]);
 
         $tokenResult = $user->createToken('auth_token');
 
-        $token = $tokenResult->accessToken;
+        $token = $tokenResult->plainTextToken;
     
         return response()->json(['token' => $token], 201);
 
@@ -50,19 +50,22 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
     
-        $user = Auth::user();
-    
+        $user=Auth::user();
+       // $user=User::where('email', $request['email'])->firstOrFail();
         $tokenResult = $user->createToken('auth_token');
-        $token = $tokenResult->accessToken;
+        $token = $tokenResult->plainTextToken;
     
-        return response()->json(['token' => $token], 201);
+        return response()->json(['token' => $token, 'user'=>$user],201);
     }
     
 
     public function logout(Request $request)
     {
-        $user = auth()->user();
+       
         
+        $user = auth()->user();
+        return response()->json(['message' => $user]);
+
         if ($user) {
             DB::table('personal_access_tokens')->where('tokenable_id', $user->id)->delete();
             return response()->json(['message' => 'Successfully logged out!']);

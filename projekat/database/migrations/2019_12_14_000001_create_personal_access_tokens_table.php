@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->id();
+            $table->id();//
             $table->foreignId('tokenable_id')->constrained('users');
             $table->string('tokenable_type')->nullable();
             $table->text('name');
@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
+            $table->timestamp('expires_at')->nullable();
         });
     }
 
