@@ -14,7 +14,7 @@ return new class extends Migration
          Schema::table('hotels', function (Blueprint $table) {
             $table->unsignedBigInteger('city_id');
 
-             // Dodavanje spoljnog ključa
+          
              $table->foreign('city_id')->references('id')->on('cities');
          });
     }
@@ -27,7 +27,7 @@ return new class extends Migration
          Schema::table('hotels', function (Blueprint $table) {
             $table->dropForeign(['city_id']);
 
-            // Brišemo kolonu za spoljni ključ
+            
             $table->dropColumn('city_id');
          });
     }
