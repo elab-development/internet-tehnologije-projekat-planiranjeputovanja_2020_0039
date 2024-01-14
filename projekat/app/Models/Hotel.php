@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['name', 'address', 'city_id'];
 }

@@ -25,17 +25,15 @@ class AttractionController extends Controller
             'name' => 'required|string|max:255',
             'city_id' => 'required|integer',
             'country_id' => 'required|integer',
-            'address'=> 'required|string|max:255'
+            'address' => 'required|string|max:255'
         ]);
 
-       
         $attraction = Attraction::create([
             'name' => $request->input('name'),
-            'city_id'=>$request->input ('city_id'),
+            'city_id' => $request->input('city_id'),
             'country_id' => $request->input('country_id'),
-            'address'=> $request->input ('address')
+            'address' => $request->input('address')
         ]);
-    
 
         return response()->json(['data' => $attraction], 201);
     }
@@ -54,7 +52,23 @@ class AttractionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $attraction = Attraction::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'city_id' => 'required|integer',
+            'country_id' => 'required|integer',
+            'address' => 'required|string|max:255'
+        ]);
+
+        $attraction->update([
+            'name' => $request->input('name'),
+            'city_id' => $request->input('city_id'),
+            'country_id' => $request->input('country_id'),
+            'address' => $request->input('address')
+        ]);
+
+        return response()->json(['data' => $attraction], 200);
     }
 
     /**
@@ -62,6 +76,10 @@ class AttractionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $attraction = Attraction::findOrFail($id);
+        $attraction->delete();
+
+        return response()->json(['message' => 'Attraction deleted successfully'], 200);
     }
 }
+

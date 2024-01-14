@@ -14,7 +14,7 @@ class CountryController extends Controller
     public function index()
     {
         $countries = Country::all();
-        return response()->json($countries);
+        return response()->json(['data' => $countries], 200);
     }
 
     /**
@@ -22,16 +22,12 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-     
         $request->validate([
             'name' => 'required|string|max:255'
-            
         ]);
 
-        
         $country = Country::create([
-            'name' => $request->input('name'),
-            
+            'name' => $request->input('name')
         ]);
 
         return response()->json(['data' => $country], 201);
@@ -42,7 +38,8 @@ class CountryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $country = Country::findOrFail($id);
+        return response()->json(['data' => $country], 200);
     }
 
     /**
@@ -50,7 +47,17 @@ class CountryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $country = Country::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $country->update([
+            'name' => $request->input('name')
+        ]);
+
+        return response()->json(['data' => $country], 200);
     }
 
     /**
@@ -61,6 +68,6 @@ class CountryController extends Controller
         $country = Country::findOrFail($id);
         $country->delete();
 
-        return response()->json(['message' => 'Country deleted successfully']);
+        return response()->json(['message' => 'Country deleted successfully'], 200);
     }
 }
