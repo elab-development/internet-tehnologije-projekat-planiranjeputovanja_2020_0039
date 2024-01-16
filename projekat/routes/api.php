@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 use Laravel\Sanctum\Sanctum;
-
-
-
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountryController;
@@ -93,7 +91,7 @@ Route::get('/users/{user_id}', [UserController::class, 'show']);
 
 
 //RUTE ZA PROMENU LOZINKE
-
-Route::post('/send-reset-link', [ResetPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/reset-password/send', [ResetPasswordController::class, 'sendResetLink']);
 Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
+
 
