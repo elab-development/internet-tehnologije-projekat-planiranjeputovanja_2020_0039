@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 const GoogleMaps = ({ apiKey }) => {
     useEffect(() => {
         const script = document.createElement('script');
+        
         script.defer = true;
         script.async = true;
 
