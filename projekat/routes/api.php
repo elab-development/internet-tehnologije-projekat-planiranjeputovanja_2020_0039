@@ -16,7 +16,7 @@ use App\Http\Controllers\TravelTermController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AttractionController;
 
-
+//resurs ruta// napraviti resurs
 Route::resource('travel-terms', TravelTermController::class);
 
 
@@ -90,4 +90,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{user_id}', [UserController::class, 'show']);
+
+
+//RUTE ZA PROMENU LOZINKE
+
+Route::post('/send-reset-link', [ResetPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
