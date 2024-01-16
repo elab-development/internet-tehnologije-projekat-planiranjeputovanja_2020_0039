@@ -5,16 +5,18 @@ import '../css/styles.css';
 
 
 
-  const Register = () => {
+  /*const Register = () => {
     const handleRegistration = (userData) => {
       console.log('Registration successful:', userData);
       
-    };
+    };*/
   
   
   //NE DIRATI KOMENTAR, TO JE BACKEND KOD
   
-  /*const handleRegistration = async (userData) => {
+
+const Register = () => {
+  const handleRegistration = async (userData) => {
     try {
       const response = await fetch('/api/register', {
         method: 'POST',
@@ -26,17 +28,17 @@ import '../css/styles.css';
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Registration successful:', data);
-        // Add logic for redirecting or showing a success message
+        console.log('Registration successful:', userData);
+        // Dodajte logiku za preusmeravanje ili prikazivanje poruke o uspehu
       } else {
         console.error('Registration failed:', response.statusText);
-        // Add logic for showing an error message
+        // Dodajte logiku za prikazivanje poruke o grešci
       }
     } catch (error) {
       console.error('Error during registration:', error);
-      // Add logic for showing a general error message
+      // Dodajte logiku za prikazivanje opšte poruke o grešci
     }
-  };*/
+  };
 
   return (
     <div>
@@ -46,4 +48,5 @@ import '../css/styles.css';
 };
 
 export default Register;
+
 

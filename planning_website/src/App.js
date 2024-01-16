@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import Planner from './pages/Planner';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact'; 
+import ResetPassword from './components/ResetPassword';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
       <Route path="/" element={<Planner />} />        
         <Route path="/login" element={<Login />} />
+        <Route path="/reset-password" element={<ResetPassword/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact/>} />

@@ -3,6 +3,8 @@ import Form from '../components/Form';
 import '../css/form.css';
 import '../css/styles.css';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
+import ResetPassword from '../components/ResetPassword';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +12,7 @@ const Login = () => {
   const [loginSuccess, setLoginSuccess] = useState(false);
 
 
-  /*const handleLogin = async (userData) => {
+  const handleLogin = async (userData) => {
     try {
       const response = await fetch('/api/login', {
         method: 'POST',
@@ -27,12 +29,12 @@ const Login = () => {
     } catch (error) {
       console.error('Error during login:', error);
     }
-  };*/
+  };
 
-  const handleLogin = (userData) => {
+  /*const handleLogin = (userData) => {
     console.log('Login successful:', userData);
     setLoginSuccess(true);
-  };
+  };*/
 
   const closeLoginPopup = () => {
     setLoginSuccess(false);
@@ -58,12 +60,16 @@ const Login = () => {
       <div className="button-container">
       <Button label="Prijavi se" onClick={handleLogin}></Button>
     </div>
+     <div className="reset-password-link">
+        <Link to="/reset-password">Zaboravili ste lozinku?</Link>
+      </div>
     {loginSuccess && (
   <div className="popup">
     <p>Uspešno ste se prijavili!</p>
     <Button label="Zatvori" onClick={closeLoginPopup} />
   </div>
 )}
+
 
     </div>
     
