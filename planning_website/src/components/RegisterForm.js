@@ -10,17 +10,17 @@ const RegisterForm = ({ onSubmit }) => {
   const [password, setPassword] = useState('');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-  const handleRegistration = () => {
+  /*const handleRegistration = () => {
     setRegistrationSuccess(true);
     if (onSubmit) {
       onSubmit({ name, email, password });
     }
-  };
+  };*/
 
 
   //OVO JE BACKEND KOD, NE DIRATI!!!
 
-  /*const handleRegistration = async (userData) => {
+  const handleRegistration = async (userData) => {
     try {
 
       console.log('UserData:', userData);
@@ -60,7 +60,7 @@ const RegisterForm = ({ onSubmit }) => {
     } catch (error) {
       console.error('Error during registration:', error);
     }
-  };*/
+  };
 
   const closePopup = () => {
     setRegistrationSuccess(false);
