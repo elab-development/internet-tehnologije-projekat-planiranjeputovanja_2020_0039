@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\FrogotPasswordController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CountryController;
@@ -91,7 +92,13 @@ Route::get('/users/{user_id}', [UserController::class, 'show']);
 
 
 //RUTE ZA PROMENU LOZINKE
-Route::post('/reset-password/send', [ResetPasswordController::class, 'sendResetLink']);
-Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
+
+
+Route::get('/reset-lozinke', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('/posalji-link-za-reset', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('/reset-lozinke/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('/izvrsi-reset-lozinke', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+
 
 
