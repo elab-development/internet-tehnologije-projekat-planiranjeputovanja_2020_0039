@@ -14,7 +14,7 @@ class CountryController extends Controller
     public function index()
     {
         $countries = Country::all();
-        return response()->json(['data' => $countries], 200);
+        return response()->json($countries, 200);
     }
 
     /**

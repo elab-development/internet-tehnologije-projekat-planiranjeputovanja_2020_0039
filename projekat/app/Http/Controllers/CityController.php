@@ -10,7 +10,7 @@ class CityController extends Controller
     public function index()
     {
         $cities = City::all();
-        return response()->json(['data' => $cities], 200);
+        return response()->json($cities, 200);
     }
 
     public function store(Request $request)
@@ -58,4 +58,13 @@ class CityController extends Controller
 
         return response()->json(['message' => 'City deleted successfully'], 200);
     }
+
+
+    public function getCitiesByCountry($countryId)
+{
+    $cities = City::where('country_id', $countryId)->get();
+    return response()->json($cities, 200);
+
+}
+
 }
