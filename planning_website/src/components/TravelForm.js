@@ -74,7 +74,6 @@ const TravelForm = () => {
     setSelectedAttraction(selectedAttraction);
   };
 
-
   const handleDateChange = (e) => {
     const date = e.target.value;
     setSelectedDate(date);
@@ -107,7 +106,7 @@ const TravelForm = () => {
         <label className='travellabel' htmlFor="country">Država:</label>
         <select className='travelselect' id="country" value={selectedCountry} onChange={handleCountryChange}>
           <option value="" disabled>Odaberi državu</option>
-          {countries.map((country) => (
+          {Array.isArray(countries) && countries.length > 0 && countries.map((country) => (
             <option key={country.id} value={country.id}>{country.name}</option>
           ))}
         </select>
@@ -154,4 +153,3 @@ const TravelForm = () => {
 };
 
 export default TravelForm;
-
