@@ -7,6 +7,12 @@ use App\Models\City;
 
 class CityController extends Controller
 {
+    public function getCitiesByCountry($country)
+    {
+        $cities = City::where('country_id', $countryId)->get();
+        return response()->json($cities);
+    }
+
     public function index()
     {
         $cities = City::all();
