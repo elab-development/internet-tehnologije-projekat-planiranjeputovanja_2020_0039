@@ -18,13 +18,12 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-      <Route path="/" element={<Planner />} />        
+        <Route path="/" element={<Planner />} />        
         <Route path="/login" element={<Login />} />
         <Route path="/reset-password" element={<ResetPassword/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact/>} />
-        {}
       </Routes>
     </Router>
   );
