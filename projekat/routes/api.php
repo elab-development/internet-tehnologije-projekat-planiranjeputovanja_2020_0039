@@ -14,6 +14,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\TravelTermController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AttractionController;
+use App\Http\Controllers\HotelController;
 
 //resurs ruta// napraviti resurs
 Route::resource('travel-terms', TravelTermController::class);
@@ -52,7 +53,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
  Route::post('/attractions', [AttractionController::class, 'store']);
   
 });*/
-
+Route::get('/hotels/{cityId}', [HotelController::class, 'getHotelsByCity']);
 
 // CITY
 Route::get('/cities', [CityController::class, 'index']);
@@ -65,7 +66,7 @@ Route::get('/cities/{countryId}', [CityController::class, 'getCitiesByCountry'])
 
 // COUNTRY
 Route::get('/countries', [CountryController::class, 'index']);
-Route::get('/countries/{id}', [CountryController::class, 'show']);
+//Route::get('/countries/{id}', [CountryController::class, 'show']);
 Route::post('/countries', [CountryController::class, 'store']);
 Route::put('/countries/{id}', [CountryController::class, 'update']);
 Route::delete('/countries/{id}', [CountryController::class, 'destroy']);

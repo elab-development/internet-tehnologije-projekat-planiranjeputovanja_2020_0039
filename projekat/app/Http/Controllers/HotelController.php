@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Hotel;
 
 class HotelController extends Controller
 {
@@ -74,4 +75,14 @@ class HotelController extends Controller
         return response()->json(['message' => 'Hotel deleted successfully'], 200);
     }
 
+    public function getHotelsByCity($cityId)
+    {
+        try {
+            $hotels = Hotel::where('city_id', $cityId)->get();
+
+            return response()->json($hotels, 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch hotels.'], 500);
+        }
+    }
 }
