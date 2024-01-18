@@ -32,18 +32,18 @@ const TravelForm = () => {
     }
   };
 
-  const fetchCities = async (selectedCountry) => {
+  const fetchCitiesByCountry = async (countryId) => {
     try {
-      const response = await api.get(`/api/cities/${selectedCountry}`);
+      const response = await api.get(`/api/cities/${countryId}`);
       setCities(response.data);
     } catch (error) {
       console.error('Error fetching cities:', error);
     }
   };
 
-  const fetchAttractions = async (selectedCity) => {
+  const fetchAttractions = async (cityId) => {
     try {
-      const response = await api.get(`/api/attractions/${selectedCity}`);
+      const response = await api.get(`/api/attractions/${cityId}`);
       setAttractions(response.data);
     } catch (error) {
       console.error('Error fetching attractions:', error);
@@ -51,22 +51,24 @@ const TravelForm = () => {
   };
 
   const handleCountryChange = async (e) => {
-    const selectedCountry = e.target.value;
-    setSelectedCountry(selectedCountry);
+    const selectedCountryId = e.target.value;
+    setSelectedCountry(selectedCountryId);
     setSelectedCity('');
     setSelectedAttraction('');
     setSelectedDate('');
 
-    await fetchCities(selectedCountry);
+    // Fetch cities based on the selected country
+    await fetchCitiesByCountry(selectedCountryId);
   };
 
   const handleCityChange = async (e) => {
-    const selectedCity = e.target.value;
-    setSelectedCity(selectedCity);
+    const selectedCityId = e.target.value;
+    setSelectedCity(selectedCityId);
     setSelectedAttraction('');
     setSelectedDate('');
 
-    await fetchAttractions(selectedCity);
+    // Fetch attractions based on the selected city
+    await fetchAttractions(selectedCityId);
   };
 
   const handleAttractionChange = (event) => {
@@ -116,9 +118,13 @@ const TravelForm = () => {
             <label className='travellabel' htmlFor="city">Grad:</label>
             <select className='travelselect' id="city" value={selectedCity} onChange={handleCityChange}>
               <option value="" disabled>Odaberi grad</option>
-              {cities.map((city) => (
-                <option key={city.id} value={city.id}>{city.name}</option>
-              ))}
+              {Array.isArray(cities) && cities.length > 0 ? (
+                cities.map((city) => (
+                  <option key={city.id} value={city.id}>{city.name}</option>
+                ))
+              ) : (
+                <option value="" disabled>Nema dostupnih gradova</option>
+              )}
             </select>
           </div>
         )}
@@ -128,11 +134,15 @@ const TravelForm = () => {
             <label className='travellabel' htmlFor="attraction">Izaberite atrakciju:</label>
             <select className='travelselect' id="attraction" value={selectedAttraction} onChange={handleAttractionChange}>
               <option value="">Izaberite atrakciju</option>
-              {attractions.map((attraction) => (
-                <option key={attraction.id} value={attraction.id}>
-                  {attraction.name}
-                </option>
-              ))}
+              {Array.isArray(attractions) && attractions.length > 0 ? (
+                attractions.map((attraction) => (
+                  <option key={attraction.id} value={attraction.id}>
+                    {attraction.name}
+                  </option>
+                ))
+              ) : (
+                <option value="" disabled>Nema dostupnih atrakcija</option>
+              )}
             </select>
           </div>
         )}
@@ -153,3 +163,4 @@ const TravelForm = () => {
 };
 
 export default TravelForm;
+
