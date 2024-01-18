@@ -7,10 +7,12 @@ const TravelForm = () => {
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const [attractions, setAttractions] = useState([]);
+  const [hotels, setHotels] = useState([]);
 
   const [selectedCountry, setSelectedCountry] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedAttraction, setSelectedAttraction] = useState('');
+  const [selectedHotel, setSelectedHotel] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
 
   const [generatedText, setGeneratedText] = useState('');
@@ -50,6 +52,15 @@ const TravelForm = () => {
     }
   };
 
+  const fetchHotels = async (cityId) => {
+    try {
+      const response = await api.get(`/api/hotels/${cityId}`);
+      setHotels(response.data);
+    } catch (error) {
+      console.error('Error fetching hotels:', error);
+    }
+  };
+
   const handleCountryChange = async (e) => {
     const selectedCountryId = e.target.value;
     setSelectedCountry(selectedCountryId);
@@ -69,6 +80,7 @@ const TravelForm = () => {
 
     // Fetch attractions based on the selected city
     await fetchAttractions(selectedCityId);
+    await fetchHotels(selectedCityId);
   };
 
   const handleAttractionChange = (event) => {
@@ -80,6 +92,12 @@ const TravelForm = () => {
     const date = e.target.value;
     setSelectedDate(date);
   };
+  const handleHotelChange = (event) => {
+    const selectedHotel = event.target.value;
+    setSelectedHotel(selectedHotel);
+  };
+
+
 
   const generateSummaryText = () => {
     return `
@@ -91,7 +109,9 @@ const TravelForm = () => {
       Vidimo se! Hvala Vam na poverenju!
     `;
   };
-
+  
+  
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -130,21 +150,39 @@ const TravelForm = () => {
         )}
 
         {selectedCity && (
-          <div className="attractions-container">
-            <label className='travellabel' htmlFor="attraction">Izaberite atrakciju:</label>
-            <select className='travelselect' id="attraction" value={selectedAttraction} onChange={handleAttractionChange}>
-              <option value="">Izaberite atrakciju</option>
-              {Array.isArray(attractions) && attractions.length > 0 ? (
-                attractions.map((attraction) => (
-                  <option key={attraction.id} value={attraction.id}>
-                    {attraction.name}
-                  </option>
-                ))
-              ) : (
-                <option value="" disabled>Nema dostupnih atrakcija</option>
-              )}
-            </select>
-          </div>
+          <>
+            <div className="attractions-container">
+              <label className='travellabel' htmlFor="attraction">Izaberite atrakciju:</label>
+              <select className='travelselect' id="attraction" value={selectedAttraction} onChange={handleAttractionChange}>
+                <option value="">Izaberite atrakciju</option>
+                {Array.isArray(attractions) && attractions.length > 0 ? (
+                  attractions.map((attraction) => (
+                    <option key={attraction.id} value={attraction.id}>
+                      {attraction.name}
+                    </option>
+                  ))
+                ) : (
+                  <option value="" disabled>Nema dostupnih atrakcija</option>
+                )}
+              </select>
+            </div>
+
+            <div className="hotels-container">
+              <label className='travellabel' htmlFor="hotel">Izaberite hotel:</label>
+              <select className='travelselect' id="hotel" value={selectedHotel} onChange={handleHotelChange}>
+                <option value="">Izaberite hotel</option>
+                {Array.isArray(hotels) && hotels.length > 0 ? (
+                  hotels.map((hotel) => (
+                    <option key={hotel.id} value={hotel.id}>
+                      {hotel.name}
+                    </option>
+                  ))
+                ) : (
+                  <option value="" disabled>Nema dostupnih hotela</option>
+                )}
+              </select>
+            </div>
+            </>
         )}
 
         <label className='travellabel' htmlFor="date">Datum putovanja:</label>
