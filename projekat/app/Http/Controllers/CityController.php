@@ -9,14 +9,15 @@ class CityController extends Controller
 {
     public function getCitiesByCountry($country)
     {
-        $cities = City::where('country_id', $countryId)->get();
+        $cities = City::where('country_id', $country)->get();
         return response()->json($cities);
     }
+    
 
     public function index()
     {
         $cities = City::all();
-        return response()->json(['data' => $cities], 200);
+        return response()->json($cities, 200);
     }
 
     public function store(Request $request)
@@ -64,4 +65,8 @@ class CityController extends Controller
 
         return response()->json(['message' => 'City deleted successfully'], 200);
     }
+
+
+ 
+
 }
