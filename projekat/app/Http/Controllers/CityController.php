@@ -9,9 +9,10 @@ class CityController extends Controller
 {
     public function getCitiesByCountry($country)
     {
-        $cities = City::where('country_id', $countryId)->get();
+        $cities = City::where('country_id', $country)->get();
         return response()->json($cities);
     }
+    
 
     public function index()
     {
@@ -66,11 +67,6 @@ class CityController extends Controller
     }
 
 
-    public function getCitiesByCountry($countryId)
-{
-    $cities = City::where('country_id', $countryId)->get();
-    return response()->json($cities, 200);
-
-}
+ 
 
 }

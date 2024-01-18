@@ -56,9 +56,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // CITY
 Route::get('/cities', [CityController::class, 'index']);
-Route::get('/cities/{id}', [CityController::class, 'show']);
+//Route::get('/cities/{id}', [CityController::class, 'show']);
 Route::post('/cities', [CityController::class, 'store']);
-Route::put('/cities/{id}', [CityController::class, 'update']);
+//Route::put('/cities/{id}', [CityController::class, 'update']);
 Route::delete('/cities/{id}', [CityController::class, 'destroy']);
 
 Route::get('/cities/{countryId}', [CityController::class, 'getCitiesByCountry']);
@@ -101,8 +101,7 @@ Route::post('/posalji-link-za-reset', 'Auth\ForgotPasswordController@sendResetLi
 Route::get('/reset-lozinke/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/izvrsi-reset-lozinke', 'Auth\ResetPasswordController@reset')->name('password.update');
 
-// Fetch cities based on selected country
-Route::get('/api/cities/{countryId}', [CityController::class, 'getCitiesByCountry']);
+
 
 // Fetch attractions based on selected city
 Route::get('/api/attractions/{cityId}', [AttractionController::class, 'getAttractionsByCity']);
