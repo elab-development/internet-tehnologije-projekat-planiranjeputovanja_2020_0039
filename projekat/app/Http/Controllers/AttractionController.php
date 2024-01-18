@@ -7,9 +7,15 @@ use App\Models\Attraction;
 
 class AttractionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+    public function getAttractionsByCity($cityId)
+    {
+        $attractions = Attraction::where('city_id', $cityId)->get();
+        return response()->json($attractions);
+    }
+    
+
+
     public function index()
     {
         $attractions = Attraction::all();

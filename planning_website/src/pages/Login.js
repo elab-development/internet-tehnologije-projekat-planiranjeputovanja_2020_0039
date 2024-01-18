@@ -14,17 +14,22 @@ const Login = () => {
 
   const handleLogin = async (userData) => {
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('http://127.0.0.1:8000/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify({email, password}),
       });
   
       const data = await response.json();
       console.log('Login response:', data);
   
+      if (response.ok) {
+        setLoginSuccess(true);
+      } else {
+        // Dodaj logiku za neuspešan login
+      }
       // Handle any further actions based on the response if needed
     } catch (error) {
       console.error('Error during login:', error);
@@ -69,8 +74,6 @@ const Login = () => {
     <Button label="Zatvori" onClick={closeLoginPopup} />
   </div>
 )}
-
-
     </div>
     
   );
