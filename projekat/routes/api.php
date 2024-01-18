@@ -22,15 +22,15 @@ Route::resource('travel-terms', TravelTermController::class);
 //ATRAKCIJE
 Route::get('/attractions', [AttractionController::class, 'index']);
 
-Route::get('/attractions/{id}', [AttractionController::class, 'show']);
+//Route::get('/attractions/{id}', [AttractionController::class, 'show']);
 
 Route::post('/attractions', [AttractionController::class, 'store']);
 
-Route::put('/attractions/{id}', [AttractionController::class, 'update']);
+//Route::put('/attractions/{id}', [AttractionController::class, 'update']);
 
-Route::delete('/attractions/{id}', [AttractionController::class, 'destroy']);
+//Route::delete('/attractions/{id}', [AttractionController::class, 'destroy']);
 
-
+//Route::get('/attractions/{city}', [AttractionController::class, 'getAttractionsByCity']);
 
 
 //PRIJAVA
@@ -96,13 +96,13 @@ Route::get('/users/{user_id}', [UserController::class, 'show']);
 //RUTE ZA PROMENU LOZINKE
 
 
-Route::get('/reset-lozinke', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('/posalji-link-za-reset', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('/reset-lozinke/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('/izvrsi-reset-lozinke', 'Auth\ResetPasswordController@reset')->name('password.update');
+//Route::get('/reset-lozinke', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+//Route::post('/posalji-link-za-reset', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+//Route::get('/reset-lozinke/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+//Route::post('/izvrsi-reset-lozinke', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 
 
 // Fetch attractions based on selected city
-Route::get('/api/attractions/{cityId}', [AttractionController::class, 'getAttractionsByCity']);
+Route::get('/attractions/{cityId}', [AttractionController::class, 'getAttractionsByCity']);
 
