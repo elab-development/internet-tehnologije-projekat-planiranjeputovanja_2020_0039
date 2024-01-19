@@ -13,8 +13,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::all();
-        return response()->json($countries, 200);
+        $countries = Country::orderBy('name', 'asc')->get();
+
+        return response()->json($countries,200);
     }
 
     /**
