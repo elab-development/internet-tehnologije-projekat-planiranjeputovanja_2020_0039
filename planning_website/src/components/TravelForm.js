@@ -13,10 +13,11 @@ const TravelForm = () => {
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedAttraction, setSelectedAttraction] = useState('');
   const [selectedHotel, setSelectedHotel] = useState('');
-  const [selectedStartDate, setSelectedStartDate] = useState('');
-  const [selectedEndDate, setSelectedEndDate] = useState('');
-  
+
   const [generatedText, setGeneratedText] = useState('');
+
+  const [weather, setWeather] = useState(null);
+  const [selectedCityId, setSelectedCityId] = useState(null);
 
   const api = axios.create({
     baseURL: 'http://127.0.0.1:8000/', // Update this to your Laravel backend URL
@@ -25,6 +26,35 @@ const TravelForm = () => {
   useEffect(() => {
     fetchCountries();
   }, []);
+
+  useEffect(() => {
+    if (selectedCityId) {
+      console.log('Before Weather Fetch');
+      // Fetch weather for the selected city
+      fetchWeather(selectedCity);
+      // Fetch attractions for the selected city
+      fetchAttractions(selectedCityId);
+      // Fetch hotels for the selected city
+      fetchHotels(selectedCityId);
+    }
+  }, [selectedCityId]);
+  
+
+  const fetchWeather = async (cityName) => {
+    const apiKey = 'xxx';
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+  
+    console.log('City Name:', cityName);
+  
+    try {
+      const response = await axios.get(apiUrl);
+      setWeather(response.data);
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      setWeather(null);
+    }
+  };
+  
 
   const fetchCountries = async () => {
     try {
@@ -38,11 +68,17 @@ const TravelForm = () => {
   const fetchCitiesByCountry = async (countryId) => {
     try {
       const response = await api.get(`/api/cities/${countryId}`);
-      setCities(response.data);
+      // Modifikujte gradove tako da sadrže objekte sa id i name
+      const modifiedCities = response.data.map((city) => ({
+        id: city.id,
+        name: city.name,
+      }));
+      setCities(modifiedCities);
     } catch (error) {
       console.error('Error fetching cities:', error);
     }
   };
+  
 
   const fetchAttractions = async (cityId) => {
     try {
@@ -50,6 +86,7 @@ const TravelForm = () => {
       setAttractions(response.data);
     } catch (error) {
       console.error('Error fetching attractions:', error);
+      setAttractions([]);
     }
   };
 
@@ -59,6 +96,7 @@ const TravelForm = () => {
       setHotels(response.data);
     } catch (error) {
       console.error('Error fetching hotels:', error);
+      setHotels([]);
     }
   };
 
@@ -67,51 +105,53 @@ const TravelForm = () => {
     setSelectedCountry(selectedCountryId);
     setSelectedCity('');
     setSelectedAttraction('');
-    setSelectedStartDate('');
-    setSelectedEndDate('');
+    setSelectedHotel('');
 
     // Fetch cities based on the selected country
     await fetchCitiesByCountry(selectedCountryId);
   };
 
-  const handleCityChange = async (e) => {
-    const selectedCityId = e.target.value;
-    setSelectedCity(selectedCityId);
+  const handleCityChange = (e) => {
+    const selectedCityName = e.target.value;
+    setSelectedCity(selectedCityName);
     setSelectedAttraction('');
-
-    // Fetch attractions based on the selected city
-    await fetchAttractions(selectedCityId);
-    await fetchHotels(selectedCityId);
+    setSelectedHotel('');
+  
+    const selectedCityObject = cities.find(city => city.name === selectedCityName);
+    const cityId = selectedCityObject ? selectedCityObject.id : null;
+  
+    setSelectedCityId(cityId);
   };
+  
+
+  
 
   const handleHotelChange = (event) => {
-    const selectedHotel = event.target.value;
-    setSelectedHotel(selectedHotel);
+    const selectedHotelId = event.target.value;
+    setSelectedHotel(selectedHotelId);
   };
 
   const handleAttractionChange = (event) => {
-    const selectedAttraction = event.target.value;
-    setSelectedAttraction(selectedAttraction);
-  };
-
-  const handleStartDateChange = (e) => {
-    const startDate = e.target.value;
-    setSelectedStartDate(startDate);
-  };
-
-  const handleEndDateChange = (e) => {
-    const endDate = e.target.value;
-    setSelectedEndDate(endDate);
+    const selectedAttractionId = event.target.value;
+    setSelectedAttraction(selectedAttractionId);
   };
 
   const generateSummaryText = () => {
+    let weatherText = '';
+
+    if (weather && weather.main && weather.weather) {
+      weatherText = `Trenutna temperatura: ${weather.main.temp}°C, Vreme: ${weather.weather[0].description}`;
+    } else {
+      weatherText = 'Nema dostupnih informacija o vremenu';
+    }
+
     return `
       Drago nam je što putujete sa nama. Ovo je plan Vašeg sledećeg putovanja.
       Država koju ste odabrali je: ${selectedCountry}
       Grad koji ćete upoznati: ${selectedCity || 'N/A'}
       Atrakcija koju želite posetiti: ${selectedAttraction || 'N/A'}
-      Početak putovanja: ${selectedStartDate || 'N/A'}
-      Kraj putovanja: ${selectedEndDate || 'N/A'}
+      Hotel u kojem ćete boraviti: ${selectedHotel || 'N/A'}
+      ${weatherText}
       Vidimo se! Hvala Vam na poverenju!
     `;
   };
@@ -120,41 +160,19 @@ const TravelForm = () => {
     e.preventDefault();
 
     try {
-      // Format start and end dates as "yyyy/mm/dd"
-      const formattedStartDate = selectedStartDate ? new Date(selectedStartDate).toISOString().split('T')[0] : null;
-      const formattedEndDate = selectedEndDate ? new Date(selectedEndDate).toISOString().split('T')[0] : null;
-      
-      const response = await api.post('/api/travel-terms', {
-        id_drzave: selectedCountry,
-        id_grada: selectedCity,
-        pocetak_putovanja: formattedStartDate !== '' ? formattedStartDate : null,
-        kraj_putovanja: formattedEndDate !== '' ? formattedEndDate : null,
-      });
-  
-
       const summaryText = generateSummaryText();
       console.log('Form data:', {
         selectedCountry,
         selectedCity,
         selectedAttraction,
-        selectedStartDate,
-        selectedEndDate,
+        selectedHotel,
       });
       console.log('Generated text:', summaryText);
 
+      // Set the generated text only if the request is successful
       setGeneratedText(summaryText);
-      console.log(response.data); // Očekujemo poruku od servera
     } catch (error) {
-      console.error('Error saving travel data:', error);
-      if (error.response) {
-        console.error('Server responded with:', error.response.data);
-        console.error('Status code:', error.response.status);
-        console.error('Headers:', error.response.headers);
-      } else if (error.request) {
-        console.error('No response received from the server');
-      } else {
-        console.error('Error setting up the request:', error.message);
-      }
+      console.error('Error generating travel summary:', error);
     }
   };
 
@@ -173,61 +191,65 @@ const TravelForm = () => {
           <div className="dynamic-dropdown">
             <label className='travellabel' htmlFor="city">Grad:</label>
             <select className='travelselect' id="city" value={selectedCity} onChange={handleCityChange}>
-              <option value="" disabled>Odaberi grad</option>
-              {Array.isArray(cities) && cities.length > 0 ? (
-                cities.map((city) => (
-                  <option key={city.id} value={city.id}>{city.name}</option>
-                ))
-              ) : (
-                <option value="" disabled>Nema dostupnih gradova</option>
-              )}
-            </select>
+  <option value="" disabled>Odaberi grad</option>
+  {Array.isArray(cities) && cities.length > 0 ? (
+    cities.map((city) => (
+      <option key={city.id} value={city.name}>
+        {city.name}
+      </option>
+    ))
+  ) : (
+    <option value="" disabled>Nema dostupnih gradova</option>
+  )}
+</select>
+
           </div>
         )}
 
         {selectedCity && (
           <>
+            <div className="weather-container">
+              <label className='travellabel'>Trenutno vreme:</label>
+              {weather ? (
+                <p>{`Temperatura: ${weather.main.temp}°C, Vreme: ${weather.weather[0].description}`}</p>
+              ) : (
+                <p>Nema dostupnih informacija o vremenu</p>
+              )}
+            </div>
+
             <div className="attractions-container">
-              <label className='travellabel' htmlFor="attraction">Izaberite atrakciju:</label>
-              <select className='travelselect' id="attraction" value={selectedAttraction} onChange={handleAttractionChange}>
-                <option value="">Izaberite atrakciju</option>
-                {Array.isArray(attractions) && attractions.length > 0 ? (
-                  attractions.map((attraction) => (
-                    <option key={attraction.id} value={attraction.id}>
-                      {attraction.name}
-                    </option>
-                  ))
-                ) : (
-                  <option value="" disabled>Nema dostupnih atrakcija</option>
-                )}
-              </select>
-            </div>
-
-            <div className="dates-container">
-              <label className='travellabel' htmlFor="start-date">Početak putovanja:</label>
-              <input className='travelinput' type="date" id="start-date" value={selectedStartDate} onChange={handleStartDateChange} />
-
-              <label className='travellabel' htmlFor="end-date">Kraj putovanja:</label>
-              <input className='travelinput' type="date" id="end-date" value={selectedEndDate} onChange={handleEndDateChange} />
-            </div>
-
-            <div className="hotels-container">
-              <label className='travellabel' htmlFor="hotel">Izaberite hotel:</label>
-              <select className='travelselect' id="hotel" value={selectedHotel} onChange={handleHotelChange}>
-                <option value="">Izaberite hotel</option>
-                {Array.isArray(hotels) && hotels.length > 0 ? (
-                  hotels.map((hotel) => (
-                    <option key={hotel.id} value={hotel.id}>
-                      {hotel.name}
-                    </option>
-                  ))
-                ) : (
-                  <option value="" disabled>Nema dostupnih hotela</option>
-                )}
-              </select>
-            </div>
-          </>
+      <label className='travellabel' htmlFor="attraction">Izaberite atrakciju:</label>
+      <select className='travelselect' id="attraction" value={selectedAttraction} onChange={handleAttractionChange}>
+        <option value="">Izaberite atrakciju</option>
+        {Array.isArray(attractions) && attractions.length > 0 ? (
+          attractions.map((attraction) => (
+            <option key={attraction.id} value={attraction.id}>
+              {attraction.name}
+            </option>
+          ))
+        ) : (
+          <option value="" disabled>Nema dostupnih atrakcija</option>
         )}
+      </select>
+    </div>
+
+    <div className="hotels-container">
+      <label className='travellabel' htmlFor="hotel">Izaberite hotel:</label>
+      <select className='travelselect' id="hotel" value={selectedHotel} onChange={handleHotelChange}>
+        <option value="">Izaberite hotel</option>
+        {Array.isArray(hotels) && hotels.length > 0 ? (
+          hotels.map((hotel) => (
+            <option key={hotel.id} value={hotel.id}>
+              {hotel.name}
+            </option>
+          ))
+        ) : (
+          <option value="" disabled>Nema dostupnih hotela</option>
+        )}
+      </select>
+    </div>
+  </>
+)}
 
         <Button label="Pošalji" onClick={handleSubmit} />
         {generatedText && (
@@ -242,3 +264,7 @@ const TravelForm = () => {
 };
 
 export default TravelForm;
+
+
+  
+

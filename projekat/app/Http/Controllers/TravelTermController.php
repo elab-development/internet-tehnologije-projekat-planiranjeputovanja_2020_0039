@@ -7,17 +7,26 @@ use Illuminate\Http\Request;
 
 class TravelTermController extends Controller
 {
-    public function index()
+    public function index($cityId)
     {
-        $travelTerms = TravelTerm::with(['city', 'country'])->get();
-        return response()->json(['travel_terms' => $travelTerms]);
+        $travelTerms = TravelTerm::where('city_id', $cityId)->get();
+
+        return response()->json($travelTerms);
     }
+
 
     public function store(Request $request)
     {
-        $request->validate([
+        /*$request->validate([
             'start_date' => 'required|date',
             'end_date' => 'required|date',
+            'city_id' => 'required|exists:cities,id',
+            'country_id' => 'required|exists:countries,id',
+        ]);*/
+
+        $request->validate([
+            'start_date' => 'required|date_format:Y-m-d',
+            'end_date' => 'required|date_format:Y-m-d',
             'city_id' => 'required|exists:cities,id',
             'country_id' => 'required|exists:countries,id',
         ]);

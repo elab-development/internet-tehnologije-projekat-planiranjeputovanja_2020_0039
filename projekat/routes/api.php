@@ -17,7 +17,7 @@ use App\Http\Controllers\AttractionController;
 use App\Http\Controllers\HotelController;
 
 //resurs ruta// napraviti resurs
-Route::resource('travel-terms', TravelTermController::class);
+//Route::resource('travel-terms', TravelTermController::class);
 
 
 //ATRAKCIJE
@@ -72,11 +72,15 @@ Route::put('/countries/{id}', [CountryController::class, 'update']);
 Route::delete('/countries/{id}', [CountryController::class, 'destroy']);
 
 // TRAVEL TERM
-Route::get('/travel-terms', [TravelTermController::class, 'index']);
-Route::get('/travel-terms/{id}', [TravelTermController::class, 'show']);
+// routes/api.php
+
+Route::get('/travel-terms/{cityId}', 'TravelTermController@index');
+
+//Route::get('/travel-terms', [TravelTermController::class, 'index']);
+//Route::get('/travel-terms/{id}', [TravelTermController::class, 'show']);
 Route::post('/travel-terms', [TravelTermController::class, 'store']);
-Route::put('/travel-terms/{id}', [TravelTermController::class, 'update']);
-Route::delete('/travel-terms/{id}', [TravelTermController::class, 'destroy']);
+//Route::put('/travel-terms/{id}', [TravelTermController::class, 'update']);
+//Route::delete('/travel-terms/{id}', [TravelTermController::class, 'destroy']);
 
 // USER
 Route::get('/users', [UserController::class, 'index']);
