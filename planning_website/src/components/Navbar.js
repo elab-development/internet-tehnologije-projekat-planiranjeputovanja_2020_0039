@@ -25,6 +25,7 @@ const Navbar = () => {
         </li>
         <li><Link to="/gallery">Galerija</Link></li>
         <li><Link to="/contact">Kontakt</Link></li>
+        <li><Link to="/attractions">Cene</Link></li>
       </ul>
     </nav>
   );

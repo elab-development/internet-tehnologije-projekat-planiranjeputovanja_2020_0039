@@ -10,7 +10,7 @@ import Planner from './pages/Planner';
 import Gallery from './pages/Gallery';
 import Contact from './pages/Contact'; 
 import ResetPassword from './components/ResetPassword';
-
+import Attractions from './pages/AttractionsPrices';
 
 
 const App = () => {
@@ -24,6 +24,7 @@ const App = () => {
         <Route path="/register" element={<Register/>} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact/>} />
+        <Route path="/attractions" element={<Attractions/>} />
       </Routes>
     </Router>
   );

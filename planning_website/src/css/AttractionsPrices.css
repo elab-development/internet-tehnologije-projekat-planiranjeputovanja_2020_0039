@@ -1,0 +1,20 @@
+/* AttractionsPrices.css */
+/* AttractionsPrices.css */
+
+.attractions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly; /* Prilagodite ovo prema vašim željama */
+}
+
+.attraction-item {
+  text-align: center;
+  margin: 10px;
+  max-width: 300px; /* Prilagodite ovo prema vašim željama */
+}
+
+.attraction-item img {
+  width: 100%;
+  height: auto;
+  max-height: 200px; /* Prilagodite ovo prema vašim željama */
+}
