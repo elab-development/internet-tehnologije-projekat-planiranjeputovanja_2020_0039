@@ -13,8 +13,9 @@ const TravelForm = () => {
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedAttraction, setSelectedAttraction] = useState('');
   const [selectedHotel, setSelectedHotel] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
-
+  const [selectedStartDate, setSelectedStartDate] = useState('');
+  const [selectedEndDate, setSelectedEndDate] = useState('');
+  
   const [generatedText, setGeneratedText] = useState('');
 
   const api = axios.create({
@@ -66,7 +67,8 @@ const TravelForm = () => {
     setSelectedCountry(selectedCountryId);
     setSelectedCity('');
     setSelectedAttraction('');
-    setSelectedDate('');
+    setSelectedStartDate('');
+    setSelectedEndDate('');
 
     // Fetch cities based on the selected country
     await fetchCitiesByCountry(selectedCountryId);
@@ -76,11 +78,15 @@ const TravelForm = () => {
     const selectedCityId = e.target.value;
     setSelectedCity(selectedCityId);
     setSelectedAttraction('');
-    setSelectedDate('');
 
     // Fetch attractions based on the selected city
     await fetchAttractions(selectedCityId);
     await fetchHotels(selectedCityId);
+  };
+
+  const handleHotelChange = (event) => {
+    const selectedHotel = event.target.value;
+    setSelectedHotel(selectedHotel);
   };
 
   const handleAttractionChange = (event) => {
@@ -88,16 +94,15 @@ const TravelForm = () => {
     setSelectedAttraction(selectedAttraction);
   };
 
-  const handleDateChange = (e) => {
-    const date = e.target.value;
-    setSelectedDate(date);
-  };
-  const handleHotelChange = (event) => {
-    const selectedHotel = event.target.value;
-    setSelectedHotel(selectedHotel);
+  const handleStartDateChange = (e) => {
+    const startDate = e.target.value;
+    setSelectedStartDate(startDate);
   };
 
-
+  const handleEndDateChange = (e) => {
+    const endDate = e.target.value;
+    setSelectedEndDate(endDate);
+  };
 
   const generateSummaryText = () => {
     return `
@@ -105,21 +110,52 @@ const TravelForm = () => {
       Država koju ste odabrali je: ${selectedCountry}
       Grad koji ćete upoznati: ${selectedCity || 'N/A'}
       Atrakcija koju želite posetiti: ${selectedAttraction || 'N/A'}
-      Vaš polazak je: ${selectedDate || 'N/A'}
+      Početak putovanja: ${selectedStartDate || 'N/A'}
+      Kraj putovanja: ${selectedEndDate || 'N/A'}
       Vidimo se! Hvala Vam na poverenju!
     `;
   };
-  
-  
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const summaryText = generateSummaryText();
-    console.log('Form data:', { selectedCountry, selectedCity, selectedAttraction, selectedDate });
-    console.log('Generated text:', summaryText);
+    try {
+      // Format start and end dates as "yyyy/mm/dd"
+      const formattedStartDate = selectedStartDate ? new Date(selectedStartDate).toISOString().split('T')[0] : null;
+      const formattedEndDate = selectedEndDate ? new Date(selectedEndDate).toISOString().split('T')[0] : null;
+      
+      const response = await api.post('/api/travel-terms', {
+        id_drzave: selectedCountry,
+        id_grada: selectedCity,
+        pocetak_putovanja: formattedStartDate !== '' ? formattedStartDate : null,
+        kraj_putovanja: formattedEndDate !== '' ? formattedEndDate : null,
+      });
+  
 
-    setGeneratedText(summaryText);
+      const summaryText = generateSummaryText();
+      console.log('Form data:', {
+        selectedCountry,
+        selectedCity,
+        selectedAttraction,
+        selectedStartDate,
+        selectedEndDate,
+      });
+      console.log('Generated text:', summaryText);
+
+      setGeneratedText(summaryText);
+      console.log(response.data); // Očekujemo poruku od servera
+    } catch (error) {
+      console.error('Error saving travel data:', error);
+      if (error.response) {
+        console.error('Server responded with:', error.response.data);
+        console.error('Status code:', error.response.status);
+        console.error('Headers:', error.response.headers);
+      } else if (error.request) {
+        console.error('No response received from the server');
+      } else {
+        console.error('Error setting up the request:', error.message);
+      }
+    }
   };
 
   return (
@@ -167,6 +203,14 @@ const TravelForm = () => {
               </select>
             </div>
 
+            <div className="dates-container">
+              <label className='travellabel' htmlFor="start-date">Početak putovanja:</label>
+              <input className='travelinput' type="date" id="start-date" value={selectedStartDate} onChange={handleStartDateChange} />
+
+              <label className='travellabel' htmlFor="end-date">Kraj putovanja:</label>
+              <input className='travelinput' type="date" id="end-date" value={selectedEndDate} onChange={handleEndDateChange} />
+            </div>
+
             <div className="hotels-container">
               <label className='travellabel' htmlFor="hotel">Izaberite hotel:</label>
               <select className='travelselect' id="hotel" value={selectedHotel} onChange={handleHotelChange}>
@@ -182,11 +226,8 @@ const TravelForm = () => {
                 )}
               </select>
             </div>
-            </>
+          </>
         )}
-
-        <label className='travellabel' htmlFor="date">Datum putovanja:</label>
-        <input className='travelinput' type="date" id="date" value={selectedDate} onChange={handleDateChange} />
 
         <Button label="Pošalji" onClick={handleSubmit} />
         {generatedText && (
@@ -201,4 +242,3 @@ const TravelForm = () => {
 };
 
 export default TravelForm;
-
