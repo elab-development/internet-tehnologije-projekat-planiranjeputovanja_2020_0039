@@ -2,14 +2,15 @@
 import React from 'react';
 import '../css/AttractionsPrices.css'; // Stvorićemo ovaj CSS fajl kasnije
 const attractionsData = [
-    { name: 'Douomo di Milano', price: 'Besplatno', imageName: 'Milan1.jpg' },
+    { name: 'Duomo di Milano', price: 'Besplatno', imageName: 'Milan1.jpg' },
     { name: 'Colosseum', price: '27,90e', imageName: 'Rim1.jpg' },
     {name: 'Vatikan', price: '30e', imageName: 'Vatikan.jpg'},
     {name: 'Sagrada Familia', price: '32e', imageName: 'SagradaFamilia.jpg'},
     {name: 'Guell park', price: '15e', imageName: 'Guell.jpg'},
     {name: 'Fontana Di Trevi', price: 'Besplatno', imageName: 'DiTrevi.jpg'},
     {name: 'Galleria Vittorio Emanuele II', price: 'Besplatno', imageName: 'Milano.jpg'},
-    {name: 'Rome Forum', price: 'Besplatno', imageName: 'Rim2.jpg'}
+    {name: 'Rome Forum', price: 'Besplatno', imageName: 'Rim2.jpg'},
+    {name: 'Ponte di Rialto', price: 'Besplatno', imageName: 'Venecija.jpg'}
     
   ];
   
