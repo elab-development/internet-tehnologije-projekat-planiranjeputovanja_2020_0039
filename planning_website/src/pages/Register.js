@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RegisterForm from '../components/RegisterForm';
 import '../css/form.css';
 import '../css/styles.css';
-
+import { Link, useNavigate } from 'react-router-dom';
 
 
   /*const Register = () => {
@@ -16,6 +16,8 @@ import '../css/styles.css';
   
 
 const Register = () => {
+  const [isUserRegistered, setIsUserRegistered] = useState(false);
+  const navigate = useNavigate(); 
   const handleRegistration = async (userData) => {
     try {
       const response = await fetch('/api/register', {
@@ -27,7 +29,13 @@ const Register = () => {
       });
 
       if (response.ok) {
+       
         const data = await response.json();
+       // navigate('/attractions'); 
+        document.cookie = `token=${data.token}; path=/`;
+
+        setIsUserRegistered(true);
+       
         console.log('Registration successful:', userData);
         // Dodajte logiku za preusmeravanje ili prikazivanje poruke o uspehu
       } else {

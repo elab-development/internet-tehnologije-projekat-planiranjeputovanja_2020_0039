@@ -3,15 +3,16 @@ import Form from '../components/Form';
 import '../css/form.css';
 import '../css/styles.css';
 import Button from '../components/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ResetPassword from '../components/ResetPassword';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-
+  const navigate = useNavigate(); 
   const handleLogin = async (userData) => {
     try {
       const response = await fetch('http://127.0.0.1:8000/api/login', {
@@ -26,7 +27,12 @@ const Login = () => {
       console.log('Login response:', data);
   
       if (response.ok) {
+        document.cookie = `token=${data.token}; path=/`;
         setLoginSuccess(true);
+        setIsUserLoggedIn(true);
+        navigate('/');
+    
+       
       } else {
         // Dodaj logiku za neuspešan login
       }
