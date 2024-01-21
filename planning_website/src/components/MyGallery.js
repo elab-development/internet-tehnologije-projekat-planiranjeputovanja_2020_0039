@@ -76,7 +76,7 @@ const MyGallery = () => {
   );
 
   const downloadImage = (url) => {
-    // Kreirajte privremeni <a> element
+    
     const link = document.createElement('a');
     link.href = url;
     link.download = 'downloaded_image.jpg'; // Naziv fajla koji će biti preuzet

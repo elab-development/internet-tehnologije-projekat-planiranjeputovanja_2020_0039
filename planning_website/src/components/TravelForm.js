@@ -145,12 +145,16 @@ const TravelForm = () => {
       weatherText = 'Nema dostupnih informacija o vremenu';
     }
 
+    const selectedCityName = selectedCity || 'N/A';
+    const selectedAttractionName = selectedAttraction || 'N/A';
+    const selectedHotelName = selectedHotel || 'N/A';
+  
     return `
       Drago nam je što putujete sa nama. Ovo je plan Vašeg sledećeg putovanja.
       Država koju ste odabrali je: ${selectedCountry}
-      Grad koji ćete upoznati: ${selectedCity || 'N/A'}
-      Atrakcija koju želite posetiti: ${selectedAttraction || 'N/A'}
-      Hotel u kojem ćete boraviti: ${selectedHotel || 'N/A'}
+      Grad koji ćete upoznati: ${selectedCityName}
+      Atrakcija koju želite posetiti: ${selectedAttractionName}
+      Hotel u kojem ćete boraviti: ${selectedHotelName}
       ${weatherText}
       Vidimo se! Hvala Vam na poverenju!
     `;
