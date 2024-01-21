@@ -18,6 +18,8 @@ use App\Http\Controllers\HotelController;
 
 //resurs ruta// napraviti resurs
 //Route::resource('travel-terms', TravelTermController::class);
+Route::get('/admin/assign-role/{userId}', 'UserController@assignAdminRole');
+
 
 
 //ATRAKCIJE

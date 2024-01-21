@@ -35,6 +35,8 @@ class AuthController extends Controller
 
             
         ]);
+        $user->role = 'auth';
+        $user->save();
 
         $tokenResult = $user->createToken('auth_token');
 
@@ -51,6 +53,9 @@ class AuthController extends Controller
         }
     
         $user=Auth::user();
+        $user->role = 'admin';
+        $user->save();
+
         //$user=User::where('email', $request['email'])->firstOrFail();
         $tokenResult = $user->createToken('auth_token');
         $token = $tokenResult->plainTextToken;

@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
+    public function assignAdminRole($userId)
+{
+    $user = User::find($userId);
+    $user->role = User::ROLE_ADMIN;
+    $user->save();
+
+    return redirect()->back()->with('success', 'Uloga uspešno dodeljena.');
+}
+
     public function index()
     {
         $users = User::all();

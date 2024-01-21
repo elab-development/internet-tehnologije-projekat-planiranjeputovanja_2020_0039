@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+           
         });
     }
 
@@ -29,4 +30,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
+
+  
 };

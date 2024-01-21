@@ -16,6 +16,8 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
+   
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,5 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+    // U app/Models/User.php
+
+public function isAdmin()
+{
+    return $this->role === 'admin'; // Prilagodite uslov prema vašoj strukturi uloga
+}
+
 
 }
