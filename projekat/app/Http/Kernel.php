@@ -15,12 +15,13 @@ class Kernel extends HttpKernel
      */
 
 protected $routeMiddleware = [
-
+    'checkUserRole' => \App\Http\Middleware\CheckUserRole::class,
     'auth'=>\App\Http\Middleware\Authenticate::class,
 ];
 
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
+       
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
