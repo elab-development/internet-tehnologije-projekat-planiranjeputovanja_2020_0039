@@ -42,6 +42,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/logout', [AuthController::class, 'logout']);
+  Route::get('/cities/{countryId}', [CityController::class, 'getCitiesByCountry']);
 });
 
 
@@ -62,7 +63,7 @@ Route::post('/cities', [CityController::class, 'store']);
 //Route::put('/cities/{id}', [CityController::class, 'update']);
 Route::delete('/cities/{id}', [CityController::class, 'destroy']);
 
-Route::get('/cities/{countryId}', [CityController::class, 'getCitiesByCountry']);
+
 
 // COUNTRY
 Route::get('/countries', [CountryController::class, 'index']);
