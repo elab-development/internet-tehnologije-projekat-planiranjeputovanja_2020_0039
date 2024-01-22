@@ -14,10 +14,12 @@ const Navbar = () => {
     setDropdownOpen(!isDropdownOpen);
   };
   useEffect(() => {
+    setIsUserRegistered(true);
     const token = getCookie('token');
     if (token) {
       setIsUserLoggedIn(true);
-      setIsUserRegistered(true);
+      //setIsUserRegistered(true);
+      console.log('User is registered:', isUserRegistered);
     }
   }, [isUserRegistered]);
   

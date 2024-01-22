@@ -35,7 +35,7 @@ const Register = () => {
         document.cookie = `token=${data.token}; path=/`;
 
         setIsUserRegistered(true);
-       
+        console.log('isUserRegistered:', isUserRegistered);
         console.log('Registration successful:', userData);
         // Dodajte logiku za preusmeravanje ili prikazivanje poruke o uspehu
       } else {
