@@ -46,6 +46,7 @@ const Navbar = () => {
     <nav>
     <ul>
       <li><Link to="/">Planer putovanja</Link></li>
+      <li><Link to="/admin">Admin</Link></li>
       <li onClick={() => setDropdownOpen(!isDropdownOpen)}>
         <span className="join-link">Pridruži se</span>
         {isDropdownOpen && (
@@ -53,6 +54,7 @@ const Navbar = () => {
             {!isUserLoggedIn ? (
               <>
                 <li><Link to="/login">Login</Link></li>
+                
                 <li><Link to="/register">Registracija</Link></li>
               </>
             ) : (
