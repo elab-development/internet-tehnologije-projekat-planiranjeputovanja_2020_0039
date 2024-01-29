@@ -15,10 +15,18 @@ use App\Http\Controllers\TravelTermController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AttractionController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\FileController;
+
+
+// Ruta za upload datoteke
+Route::post('/upload', [FileController::class, 'upload']);
+
+// Ruta za dohvatanje informacija o datotekama
+Route::get('/files', [FileController::class, 'getFiles']);
 
 //resurs ruta// napraviti resurs
 //Route::resource('travel-terms', TravelTermController::class);
-Route::get('/admin/assign-role/{userId}', 'UserController@assignAdminRole');
+//Route::get('/admin/assign-role/{userId}', 'UserController@assignAdminRole');
 
 
 
@@ -77,28 +85,28 @@ Route::delete('/countries/{id}', [CountryController::class, 'destroy']);
 // TRAVEL TERM
 // routes/api.php
 
-Route::get('/travel-terms/{cityId}', 'TravelTermController@index');
+//Route::get('/travel-terms/{cityId}', 'TravelTermController@index');
 
 //Route::get('/travel-terms', [TravelTermController::class, 'index']);
 //Route::get('/travel-terms/{id}', [TravelTermController::class, 'show']);
-Route::post('/travel-terms', [TravelTermController::class, 'store']);
+//Route::post('/travel-terms', [TravelTermController::class, 'store']);
 //Route::put('/travel-terms/{id}', [TravelTermController::class, 'update']);
 //Route::delete('/travel-terms/{id}', [TravelTermController::class, 'destroy']);
 
 // USER
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users', [UserController::class, 'store']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'destroy']);
+//Route::get('/users', [UserController::class, 'index']);
+//Route::get('/users/{id}', [UserController::class, 'show']);
+//Route::post('/users', [UserController::class, 'store']);
+//Route::put('/users/{id}', [UserController::class, 'update']);
+//Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{user_id}', [UserController::class, 'show']);
+//Route::get('/users', [UserController::class, 'index']);
+//Route::get('/users/{user_id}', [UserController::class, 'show']);
 
 
 //RUTE ZA PROMENU LOZINKE
