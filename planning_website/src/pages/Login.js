@@ -34,9 +34,8 @@ const Login = () => {
     
        
       } else {
-        // Dodaj logiku za neuspešan login
+        
       }
-      // Handle any further actions based on the response if needed
     } catch (error) {
       console.error('Error during login:', error);
     }

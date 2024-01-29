@@ -14,9 +14,11 @@ const Navbar = () => {
     setDropdownOpen(!isDropdownOpen);
   };
   useEffect(() => {
-    setIsUserRegistered(true);
+   
     const token = getCookie('token');
+    //setIsUserRegistered(true);
     if (token) {
+      setIsUserRegistered(true);
       setIsUserLoggedIn(true);
       //setIsUserRegistered(true);
       console.log('User is registered:', isUserRegistered);
@@ -34,9 +36,9 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // Ukloni token iz kolačića
+    
     document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
-    // Postavi stanje za odjavljivanje
+    
     setIsUserLoggedIn(false);
     setIsUserRegistered(false); // Ovo možda zavisi od vaših zahteva
     navigate('/');

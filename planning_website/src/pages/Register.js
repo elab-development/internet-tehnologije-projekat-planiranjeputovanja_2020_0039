@@ -37,14 +37,14 @@ const Register = () => {
         setIsUserRegistered(true);
         console.log('isUserRegistered:', isUserRegistered);
         console.log('Registration successful:', userData);
-        // Dodajte logiku za preusmeravanje ili prikazivanje poruke o uspehu
+       
       } else {
         console.error('Registration failed:', response.statusText);
-        // Dodajte logiku za prikazivanje poruke o grešci
+        
       }
     } catch (error) {
       console.error('Error during registration:', error);
-      // Dodajte logiku za prikazivanje opšte poruke o grešci
+      
     }
   };
 
