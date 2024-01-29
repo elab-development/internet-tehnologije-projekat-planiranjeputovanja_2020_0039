@@ -75,42 +75,44 @@ const MyGallery = () => {
     }))
   );
 
-  const downloadImage = (url) => {
+  const downloadImage = () => {
     
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'downloaded_image.jpg'; // Naziv fajla koji će biti preuzet
+    const url = galleryImages[selectedImage]?.original;
 
-    // Dodajte element na stranicu
-    document.body.appendChild(link);
-
-    // Simulirajte klik na element
-    link.click();
-
-    // Uklonite element nakon simuliranog klika
-    document.body.removeChild(link);
+    if (url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'downloaded_image.jpg';
+  
+      // Dodajte element na stranicu
+      document.body.appendChild(link);
+  
+      // Simulirajte klik na element
+      link.click();
+  
+      // Sačekajte pre nego što uklonite element
+      setTimeout(() => {
+        // Uklonite element nakon simuliranog klika
+        document.body.removeChild(link);
+      }, 100); // Podesite vreme čekanja prema potrebi
+    }
   };
 
 
   return (
     <Container>
-      <Row>
+    <Row>
       <Col xs={12}>
-          <h1></h1>
-          <ImageGallery items={galleryImages} />
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-          {selectedImage && (
-            <div>
-              <h2>Selected Image:</h2>
-              <img src={selectedImage} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-         <button onClick={() => selectedImage !== undefined && downloadImage(galleryImages[selectedImage]?.original)}>
-  Preuzmi trenutnu sliku
-</button>
-        </Col>
-      </Row>
-  </Container>  
+        <h1></h1>
+        <ImageGallery
+          items={galleryImages}
+          onSlide={(index) => setSelectedImage(index)}
+        />
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+        <button onClick={downloadImage}>Preuzmi trenutnu sliku</button>
+      </Col>
+    </Row>
+  </Container>
   );
 };
 
