@@ -11,6 +11,7 @@ import Gallery from './pages/Gallery';
 import Contact from './pages/Contact'; 
 import ResetPassword from './components/ResetPassword';
 import Attractions from './pages/AttractionsPrices';
+import Admin from './pages/Admin';
 
 
 const App = () => {
@@ -18,7 +19,8 @@ const App = () => {
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Planner />} />        
+        <Route path="/" element={<Planner />} /> 
+        <Route path="/admin" element={<Admin />} />       
         <Route path="/login" element={<Login />} />
         <Route path="/reset-password" element={<ResetPassword/>} />
         <Route path="/register" element={<Register/>} />
