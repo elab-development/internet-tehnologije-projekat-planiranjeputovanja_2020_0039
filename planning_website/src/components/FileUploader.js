@@ -1,19 +1,39 @@
 // FileUploader.js
-import React, { useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React from 'react';
+
+const uploadFile = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/upload', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log('File uploaded successfully');
+    } else {
+      console.error('Error uploading file');
+    }
+  } catch (error) {
+    console.error('Error uploading file', error);
+  }
+};
 
 const FileUploader = ({ onUpload }) => {
-  const onDrop = useCallback((acceptedFiles) => {
-    
-    onUpload(acceptedFiles);
-  }, [onUpload]);
-
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      uploadFile(file);
+      onUpload(file);
+    }
+  };
 
   return (
-    <div {...getRootProps()} style={dropzoneStyles}>
-      <input {...getInputProps()} />
-      <p>Drag 'n' drop some files here, or click to select files</p>
+    <div style={dropzoneStyles}>
+      <input type="file" onChange={handleFileChange} />
+      <p>Click to select a file</p>
     </div>
   );
 };

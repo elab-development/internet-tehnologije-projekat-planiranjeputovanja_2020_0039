@@ -4,17 +4,52 @@
 .attractions-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; /* Prilagodite ovo prema vašim željama */
+  justify-content: space-evenly;
 }
 
 .attraction-item {
   text-align: center;
   margin: 10px;
-  max-width: 300px; /* Prilagodite ovo prema vašim željama */
+  max-width: 300px;
+  position: relative;
 }
 
 .attraction-item img {
   width: 100%;
   height: auto;
-  max-height: 200px; /* Prilagodite ovo prema vašim željama */
+  max-height: 200px;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.pagination button {
+  background-color: #f56e30;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: white;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.pagination button:focus {
+  outline: none;
 }
