@@ -1,11 +1,16 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 15vh;
-    margin-top: 50px;
- }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Use 100vh to set the container to 100% of the viewport height */
+  /*background-image: url('path/to/your/background-image.jpg');*/
+  background-size: cover; /* This property ensures that the background image covers the entire container */
+  margin-top: 50px;
+}
+
+/* Rest of your existing CSS styles for .form-container */
+
 
 div {
     margin-bottom: 0px;
@@ -28,6 +33,23 @@ label {
     border-radius: 5px;
     font-size: 14px;
   }
+  .select-action {
+    width: 50%; /* Adjust the width as needed */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 18px; /* Adjust the font size as needed */
+    appearance: none;
+    background-color: #fff;
+    color: #333;
+}
+
+.select-action:focus {
+    outline: 5px solid #ccc;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
   
  
   div {

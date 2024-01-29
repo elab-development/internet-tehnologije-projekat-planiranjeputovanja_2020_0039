@@ -37,9 +37,9 @@ Route::get('/attractions', [AttractionController::class, 'index']);
 
 Route::post('/attractions', [AttractionController::class, 'store']);
 
-//Route::put('/attractions/{id}', [AttractionController::class, 'update']);
+Route::put('/attractions/{id}', [AttractionController::class, 'update']);
 
-//Route::delete('/attractions/{id}', [AttractionController::class, 'destroy']);
+Route::delete('/attractions/{id}', [AttractionController::class, 'destroy']);
 
 //Route::get('/attractions/{city}', [AttractionController::class, 'getAttractionsByCity']);
 
@@ -70,7 +70,7 @@ Route::get('/hotels/{cityId}', [HotelController::class, 'getHotelsByCity']);
 Route::get('/cities', [CityController::class, 'index']);
 //Route::get('/cities/{id}', [CityController::class, 'show']);
 Route::post('/cities', [CityController::class, 'store']);
-//Route::put('/cities/{id}', [CityController::class, 'update']);
+Route::put('/cities/{id}', [CityController::class, 'update']);
 Route::delete('/cities/{id}', [CityController::class, 'destroy']);
 
 
