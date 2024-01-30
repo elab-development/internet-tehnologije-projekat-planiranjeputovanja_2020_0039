@@ -7,6 +7,7 @@ const ContactForm = () => {
     email: '',
     message: ''
   });
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,18 +17,38 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Podaci:', formData);
 
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log('Podaci su uspešno poslati!');
+        setFormData({
+          name: '',
+          email: '',
+          message: '',
+        });
+      } else {
+        console.error('Greška prilikom slanja podataka na server.');
+      }
+    } catch (error) {
+      console.error('Greška prilikom slanja zahteva:', error);
+    }
+  };
+  const handlePopupClose = () => {
+    setIsSuccess(false);
   };
 
   return (
+    <>
     <form className="contact-form" onSubmit={handleSubmit}>
       <input
         type="text"
@@ -54,6 +75,14 @@ const ContactForm = () => {
       ></textarea>
       <button type="submit">Pošalji</button>
     </form>
+
+    {isSuccess && (
+        <div className="success-popup">
+          <p>Uspešno ste poslali poruku!</p>
+          <button onClick={handlePopupClose}>Zatvori</button>
+        </div>
+      )}
+    </>
   );
 };
 
