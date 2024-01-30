@@ -16,7 +16,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\AttractionController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\FileController;
-
+use App\Http\Controllers\ContactController;
 
 // Ruta za upload datoteke
 Route::post('/upload', [FileController::class, 'upload']);
@@ -122,3 +122,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Fetch attractions based on selected city
 Route::get('/attractions/{cityId}', [AttractionController::class, 'getAttractionsByCity']);
 
+//Kontakt
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
