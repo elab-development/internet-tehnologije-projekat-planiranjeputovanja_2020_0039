@@ -12,7 +12,7 @@ import Contact from './pages/Contact';
 import ResetPassword from './components/ResetPassword';
 import Attractions from './pages/AttractionsPrices';
 import Admin from './pages/Admin';
-
+import Ball from './pages/EightBall';
 
 const App = () => {
   return (
@@ -27,6 +27,7 @@ const App = () => {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/attractions" element={<Attractions/>} />
+        <Route path="/eightBall" element={<Ball/>} />
       </Routes>
     </Router>
   );

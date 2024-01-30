@@ -1,9 +1,6 @@
 import React from 'react';
 import ContactForm from '../components/ContactForm'; // Putanja do ContactForm komponente
 import FileUploader from '../components/FileUploader';
-import EightBall from '../components/EightBall'; 
-import '../css/EightBall.css';
-
 const ContactPage = () => {
   const handleUpload = (files) => {
     // Ovde možete implementirati logiku za slanje slika na server
@@ -19,7 +16,7 @@ const ContactPage = () => {
       <ContactForm />
       <h1 className="contact-title">Vaše avanture</h1>
       <FileUploader onUpload={handleUpload} />
-      <div><EightBall /> </div>
+    
       {}
     </div>
   </div>

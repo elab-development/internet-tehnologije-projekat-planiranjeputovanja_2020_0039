@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
 import '../css/AttractionsPrices.css'; // Stvorićemo ovaj CSS fajl kasnije
+
+
 const attractionsData = [
     { name: 'Duomo di Milano', price: 'Besplatno', imageName: 'Milan1.jpg' },
     { name: 'Colosseum', price: '27,90e', imageName: 'Rim1.jpg' },
@@ -64,6 +66,7 @@ const attractionsData = [
     };
   
     return (
+      
       <div className="attractions-container">
         <div className="filter-container">
           <label>Min cena:</label>
@@ -73,6 +76,7 @@ const attractionsData = [
           <button onClick={handleFilter}>Filtriraj</button>
           <button onClick={handleClearFilter}>Očisti filter</button>
         </div>
+      
         {currentAttractions.map((attraction, index) => (
           <div key={index} className="attraction-item">
             <img src={`/images/${attraction.imageName}`} alt={attraction.name} />
@@ -80,6 +84,7 @@ const attractionsData = [
             <p>{attraction.price}</p>
           </div>
         ))}
+      
         <div className="pagination">
           <button onClick={handlePrevPage}>{'<'}</button>
           {Array.from({ length: totalPages }, (_, index) => (
@@ -89,7 +94,9 @@ const attractionsData = [
           ))}
           <button onClick={handleNextPage}>{'>'}</button>
         </div>
+       
       </div>
+      
     );
   };
   
