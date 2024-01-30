@@ -1,0 +1,67 @@
+/* Admin.css */
+
+.form-container {
+    max-width: 600px; /* Adjust the maximum width as needed */
+    margin: auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.label-container label {
+    margin-bottom: 5px;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+.button-container {
+    text-align: center;
+}
+
+/* Ensure consistent styling for buttons */
+.button-container button {
+    margin-right: 10px;
+}
+
+/* Ensure consistent styling for select */
+.select-action {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Styling for country selection */
+.select-country {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/* Ensure consistent styling for text inputs */
+.input-container input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+/* Ensure consistent styling for paragraphs */
+.form-container p {
+    margin: 0;
+}
+
+/* Ensure consistent styling for divs within the form */
+.form-container div {
+    margin-bottom: 10px;
+}
