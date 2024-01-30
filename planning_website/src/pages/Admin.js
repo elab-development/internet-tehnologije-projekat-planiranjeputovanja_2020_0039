@@ -16,14 +16,14 @@ function Admin() {
         <div className="form-container">
             <div>
                 <label>
-                    Choose Action:
+                    Izaberi akciju:
                     <select
                         className="select-action"  
                         value={action}
                         onChange={(e) => handleActionChange(e.target.value)}
                     >
-                        <option value="insert">Insert</option>
-                        <option value="updateDelete">Update/Delete</option>
+                        <option value="insert">Unos</option>
+                        <option value="updateDelete">Ažuriraj/Izbriši</option>
                     </select>
                 </label>
             </div>
@@ -60,14 +60,14 @@ const InsertForm = () => {
 
     return (
         <div className="form-container">
-            <h2>Insert Form</h2>
+            <h2>Forma za unos</h2>
             <div>
-                <label>Country:</label>
+                <label>Država:</label>
                 <input type="text" name="country" value={formData.country} onChange={handleInputChange} />
             </div>
 
             <div className="button-container">
-                <button onClick={handleInsert}>Insert Data</button>
+                <button onClick={handleInsert}>Unesi državu</button>
             </div>
         </div>
     );
@@ -133,11 +133,11 @@ const UpdateDeleteForm = () => {
 
     return (
         <div className="form-container">
-            <h2>Update/Delete Form</h2>
+            <h2>Forma za Ažuriranje/Brisanje</h2>
             <div>
-                <label>Select Country:</label>
+                <label>Izaberi državu:</label>
                 <select value={selectedCountry} onChange={handleCountryChange}>
-                    <option value="">Select a Country</option>
+                    <option value="">Izaberi državu</option>
                     {countryOptions.map((country) => (
                         <option key={country.id} value={country.id}>
                             {country.name}
@@ -160,8 +160,8 @@ const UpdateDeleteForm = () => {
             />
         </div>
         <div className="button-container">
-            <button onClick={handleUpdate}>Update </button>
-            <button onClick={handleDelete}>Delete </button>
+            <button onClick={handleUpdate}>Ažuriraj </button>
+            <button onClick={handleDelete}>Izbriši </button>
         </div>
     </div>
 )}

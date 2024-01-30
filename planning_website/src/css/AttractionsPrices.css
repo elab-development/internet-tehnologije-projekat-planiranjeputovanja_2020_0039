@@ -21,16 +21,22 @@
 }
 
 .pagination {
-  position: absolute;
+  position:  fixed; ;
   bottom: 0;
   left: 50%;
+  width: 100%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
 }
-
+.filter-container button {
+  background-color: #f56e30;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
 .pagination button {
   background-color: #f56e30;
   color: white;
@@ -41,7 +47,7 @@
 }
 
 .pagination button:hover {
-  background-color: white;
+  background-color: rgb(206, 144, 100);
 }
 
 .pagination button:disabled {

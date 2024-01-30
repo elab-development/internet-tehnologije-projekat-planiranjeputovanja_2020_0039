@@ -74,6 +74,7 @@ const Navbar = () => {
         <>
           <li><Link to="/gallery">Galerija</Link></li>
           <li><Link to="/contact">Kontakt</Link></li>
+          <li><Link to="/eightBall">Magična lopta</Link></li>
         </>
       )}
      

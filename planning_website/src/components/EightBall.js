@@ -22,43 +22,42 @@ const handleClick = () => {
   setUserInput('');
   }
   else{
-    setError('Enter a question to know the answer!')
+    setError('Unesite pitanje da bi ste saznali odgovor!')
   }
   console.log(randomIndex);
 }
 
 const possibleAnswers = [
-  'It is certain',
-  'It is decidedly so',
-  'Without a doubt',
-  'Yes, definitely',
-  'You may rely on it',
-  'As I see it, yes',
-  'Outlook good',
-  'Yes',
-  'Signs point to yes',
-  'Reply hazy try again',
-  'Ask again later',
-  'Better not tell you now',
-  'Cannot predict now',
-  'Concentrate and ask again',
-  'Don\'t count on it',
-  'My reply is no',
-  'My sources say no',
-  'Most likely',
-  'Outlook not so good',
-  'Very doubtful'
+  'Sigurno je',
+  'To je definitivno tako',
+  'Bez sumnje',
+  'Da definitivno',
+  'Možete osloniti na njega',
+  'Kako ja to vidim, da',
+  'Izgledi dobri',
+  'Da',
+  'Znaci upućuju na da',
+  'Pitaj ponovo kasnije',
+  'Bolje da ti sada ne govorim',
+  'Ne mogu sada predvideti',
+  'Koncentrišite se i pitajte ponovo',
+  'Ne računajte na to',
+  'Moj odgovor je ne',
+  'Moji izvori kažu ne',
+  'Najverovatnije',
+  'Izgledi nisu tako dobri',
+  'Veoma sumnjivo'
 ];
 const answer = possibleAnswers[randomIndex];
   return (
-    <div className="App">
-      <h1>Welcome to ask Magic 8-ball</h1>
-      <p className="info">Ask a question and tap me for an answer...</p>
+    <div className="A">
+      <h1>Dobrodošli da pitate Magičnu loptu!</h1>
+      <p className="info">Postavite pitanje i dodirnite me za odgovor...</p>
       <input type="text" className="question" value={userInput} onChange={handleChange} />
       <div className="eight-ball">
         <div className="content" onClick={handleClick}>
         {error ? <p className="error">{error}</p> :
-          answer ? <p className="answer">{answer}</p> : <p className="eight">8</p>}
+          answer ? <p className="answer">{answer}</p> : <p className="eight">start</p>}
           
         </div>
       </div>
