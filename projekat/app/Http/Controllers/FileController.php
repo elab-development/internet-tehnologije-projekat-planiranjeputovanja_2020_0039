@@ -10,37 +10,22 @@ class FileController extends Controller
     
     public function upload(Request $request)
     {
-        try{
-
-            if ($request->hasFile('file') && $request->file('file')->isValid()) {
-                $file = $request->file('file');
-                $originalName = $file->getClientOriginalName();
-                $mimeType = $file->getMimeType();
+        $request->validate([
+            'file' => 'required|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
     
-                if ($mimeType == 'application/pdf') {
-                    $path = $file->store('uploads'); // Folder 'uploads' će se automatski kreirati
+        $uploadedFile = $request->file('file');
+        $path = $uploadedFile->store('app/uploads'); // Podesite prema vašim potrebama
     
-                    // Sačuvaj informacije o datoteci u bazi
-                    File::create([
-                        'filename' => $originalName,
-                        'filepath' => $path,
-                    ]);
+        $file = File::create([
+            'filename' => $uploadedFile->getClientOriginalName(),
+            'path' => $path,
+        ]);
     
-                    return response()->json(['path' => $path, 'originalName' => $originalName], 200);
-                } else {
-                    return response()->json(['error' => 'Invalid file type'], 400);
-                }
-            }
-        }catch (\Exception $e) {
-            // Logujte izuzetak
-            \Log::error($e);
+        dd($file);
     
-            return response()->json(['error' => 'Internal Server Error'], 500);
-        }
-
-        return response()->json(['error' => 'Invalid file or no file provided'], 400);
+        return response()->json($file, 201);
     }
-    
 
     public function getFiles()
     {
@@ -49,4 +34,3 @@ class FileController extends Controller
         return response()->json($files);
     }
 }
-
