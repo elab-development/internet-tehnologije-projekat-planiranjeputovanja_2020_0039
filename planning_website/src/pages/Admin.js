@@ -2,36 +2,39 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../css/form.css';
 import '../css/styles.css';
-import '../css/Admin.css';  
-
+import '../css/Admin.css';
 
 function Admin() {
-    const [action, setAction] = useState(null);
+  const [action, setAction] = useState(null);
 
-    const handleActionChange = (selectedAction) => {
-        setAction(selectedAction);
-    };
+  const handleActionChange = (selectedAction) => {
+    setAction(selectedAction);
+  };
 
-    return (
-        <div className="form-container">
-            <div>
-                <label>
-                    Izaberi akciju:
-                    <select
-                        className="select-action"  
-                        value={action}
-                        onChange={(e) => handleActionChange(e.target.value)}
-                    >
-                        <option value="insert">Unos</option>
-                        <option value="updateDelete">Ažuriraj/Izbriši</option>
-                    </select>
-                </label>
-            </div>
-    
-            {action === 'insert' && <InsertForm />}
-            {action === 'updateDelete' && <UpdateDeleteForm />}
-        </div>
-    );
+  return (
+    <div className="admin-form-container">
+      <div>
+        <label className="label-admin">
+          Izaberi akciju:
+          <button
+            className={`admin-select-action ${action === 'insert' ? 'active' : ''}`}
+            onClick={() => handleActionChange('insert')}
+          >
+            Unos
+          </button>
+          <button
+            className={`admin-select-action ${action === 'updateDelete' ? 'active' : ''}`}
+            onClick={() => handleActionChange('updateDelete')}
+          >
+            Ažuriraj/Izbriši
+          </button>
+        </label>
+      </div>
+
+      {action === 'insert' && <InsertForm />}
+      {action === 'updateDelete' && <UpdateDeleteForm />}
+    </div>
+  );
 }
 
 const InsertForm = () => {
@@ -62,8 +65,8 @@ const InsertForm = () => {
         <div className="form-container">
             <h2>Forma za unos</h2>
             <div>
-                <label>Država:</label>
-                <input type="text" name="country" value={formData.country} onChange={handleInputChange} />
+                <label className="label-admin">Država:</label>
+                <input className="input-admin" type="text" name="country" value={formData.country} onChange={handleInputChange} />
             </div>
 
             <div className="button-container">
@@ -135,8 +138,8 @@ const UpdateDeleteForm = () => {
         <div className="form-container">
             <h2>Forma za Ažuriranje/Brisanje</h2>
             <div>
-                <label>Izaberi državu:</label>
-                <select value={selectedCountry} onChange={handleCountryChange}>
+                <label className="label-admin">Izaberi državu:</label>
+                <select className="adminselect" value={selectedCountry} onChange={handleCountryChange}>
                     <option value="">Izaberi državu</option>
                     {countryOptions.map((country) => (
                         <option key={country.id} value={country.id}>
@@ -151,8 +154,8 @@ const UpdateDeleteForm = () => {
        
 
         <div>
-            <label>Novo ime:</label>
-            <input
+            <label className="label-admin">Novo ime:</label>
+            <input className="input-admin"
                 type="text"
                 name="newCountryName"
                 value={newCountryName}

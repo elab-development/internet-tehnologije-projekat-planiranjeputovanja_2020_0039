@@ -1,74 +1,142 @@
-.form-container {
-    max-width: 800px; /* Increase the maximum width as needed */
-    margin: auto;
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h2 {
-    text-align: center;
-    font-size: 2.5em; /* Increase font size for h2 */
+/* Stilovi za opšti izgled stranice */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #8fbce0;
+    color: #333;
+    margin: 0;
 }
 
-.label-container {
+/* Stilovi za labelu i input */
+.input-admin {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.label-admin {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px; /* Increase margin for label-container */
+    align-items: center;
+    justify-content: center;
+    color: #333;
 }
 
-.label-container label {
-    margin-bottom: 10px; /* Increase margin for labels */
-    font-size: 1.2em; /* Increase font size for labels */
+.adminselect {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.input-container {
-    margin-bottom: 20px; /* Increase margin for input-container */
+/* Stilovi za opšti izgled forme */
+.admin-form-container {
+    width: 80%;
+    max-width: 600px;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    margin: 20px auto;
+    height: 100vh;
+    background-position: center;
 }
 
-.button-container {
+/* Stilovi za opšti izgled forme */
+.admin-header-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Stilovi za izbor akcije */
+.admin-select-action {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+/* Dodatni stilovi za responzivnost na manjim ekranima */
+@media (max-width: 768px) {
+    .admin-form-container {
+        width: 90%;
+    }
+}
+
+/* Dodatni stilovi za InsertForm komponentu */
+.admin-insert-form {
+    color: #333;
+}
+
+.admin-insert-label {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.admin-insert-input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-top: 8px;
+    font-size: 1.2em;
+}
+
+.admin-insert-button-container {
     text-align: center;
 }
 
-/* Ensure consistent styling for buttons */
-.button-container button {
-    margin-right: 15px; /* Increase margin-right for buttons */
-    padding: 10px; /* Increase padding for buttons */
-    font-size: 1.2em; /* Increase font size for buttons */
+.admin-insert-button {
+    margin-right: 15px;
+    padding: 12px;
+    font-size: 1.2em;
 }
 
-/* Ensure consistent styling for select */
-.select-action,
-.select-country {
+/* Dodatni stilovi za UpdateDeleteForm komponentu */
+.admin-update-delete-form {
+    color: #333;
+}
+
+.admin-update-delete-label {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.admin-update-delete-input {
     width: 100%;
-    padding: 12px; /* Increase padding for selects */
-    margin-top: 8px; /* Increase margin-top for selects */
-    margin-bottom: 20px; /* Increase margin-bottom for selects */
-    font-size: 1.2em; /* Increase font size for selects */
+    padding: 12px;
     box-sizing: border-box;
-
-}
-.select-country {
-    width: 100%;
-    padding: 12px; /* Increase padding for more height */
-    margin-top: 8px; /* Increase margin-top for more space */
-    margin-bottom: 20px;
-    font-size: 1.2em; /* Increase font size for better visibility */
-    box-sizing: border-box;
-}
-/* Ensure consistent styling for text inputs */
-.input-container input {
-    width: 100%;
-    padding: 10px; /* Increase padding for text inputs */
-    box-sizing: border-box;
-    margin-top: 8px; /* Increase margin-top for text inputs */
-    font-size: 1.2em; /* Increase font size for text inputs */
+    margin-top: 8px;
+    font-size: 1.2em;
 }
 
-/* Ensure consistent styling for paragraphs */
-.form-container p {
-    margin: 0;
-    font-size: 1.2em; /* Increase font size for paragraphs */
+.admin-update-delete-button-container {
+    text-align: center;
 }
 
-/* Ensure consistent styling for divs within the form */
-.form-container div {
-    margin-bottom: 15px; /* Increase margin-bottom for divs */
+.admin-update-button,
+.admin-delete-button {
+    margin-right: 15px;
+    padding: 12px;
+    font-size: 1.2em;
 }
+
+
+  
+  
+  

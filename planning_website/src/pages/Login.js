@@ -60,12 +60,14 @@ const Login = () => {
         type="text"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className="custom-input" 
       />
       <Form
         label="Lozinka"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        className="custom-input" 
       />
       <div className="button-container">
       <Button label="Prijavi se" onClick={handleLogin}></Button>
