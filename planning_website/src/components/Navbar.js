@@ -49,6 +49,13 @@ const Navbar = () => {
     <ul>
       <li><Link to="/">Planer putovanja</Link></li>
       <li><Link to="/admin">Admin</Link></li>
+
+          <li><Link to="/attractions">Cene</Link></li>
+          <li><Link to="/gallery">Galerija</Link></li>
+          <li><Link to="/contact">Kontakt</Link></li>
+          <li><Link to="/eightBall">Magična lopta</Link></li>
+
+
       <li onClick={() => setDropdownOpen(!isDropdownOpen)}>
         <span className="join-link">Pridruži se</span>
         {isDropdownOpen && (
@@ -67,14 +74,12 @@ const Navbar = () => {
       </li>
       { isUserRegistered && (
         <>
-          <li><Link to="/attractions">Cene</Link></li>
+          
         </>
       )}
       {isUserLoggedIn && isUserRegistered && (
         <>
-          <li><Link to="/gallery">Galerija</Link></li>
-          <li><Link to="/contact">Kontakt</Link></li>
-          <li><Link to="/eightBall">Magična lopta</Link></li>
+          
         </>
       )}
      
