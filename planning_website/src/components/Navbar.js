@@ -14,16 +14,20 @@ const Navbar = () => {
     setDropdownOpen(!isDropdownOpen);
   };
   useEffect(() => {
-   
     const token = getCookie('token');
-    //setIsUserRegistered(true);
+    setIsUserRegistered(true);
     if (token) {
+      console.log("isUserRegistered before set:", isUserRegistered);
       setIsUserRegistered(true);
+      console.log("isUserRegistered after set:", isUserRegistered);
       setIsUserLoggedIn(true);
-      //setIsUserRegistered(true);
-      console.log('User is registered:', isUserRegistered);
     }
+  }, []);
+
+  useEffect(() => {
+    console.log("isUserRegistered after set:", isUserRegistered);
   }, [isUserRegistered]);
+  
   
   useEffect(() => {
     setRefreshComponent(prevState => !prevState);
@@ -34,6 +38,7 @@ const Navbar = () => {
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop().split(';').shift();
   };
+
 
   const handleLogout = () => {
     
@@ -48,14 +53,7 @@ const Navbar = () => {
     <nav>
     <ul>
       <li><Link to="/">Planer putovanja</Link></li>
-      <li><Link to="/admin">Admin</Link></li>
-
-          <li><Link to="/attractions">Cene</Link></li>
-          <li><Link to="/gallery">Galerija</Link></li>
-          <li><Link to="/contact">Kontakt</Link></li>
-          <li><Link to="/eightBall">Magična lopta</Link></li>
-
-
+      
       <li onClick={() => setDropdownOpen(!isDropdownOpen)}>
         <span className="join-link">Pridruži se</span>
         {isDropdownOpen && (
@@ -72,14 +70,20 @@ const Navbar = () => {
           </ul>
         )}
       </li>
+
       { isUserRegistered && (
         <>
-          
+        
+          <li><Link to="/attractions">Cene</Link></li>
+          <li><Link to="/gallery">Galerija</Link></li>
+          <li><Link to="/eightBall">Magična lopta</Link></li>
+          <li><Link to="/contact">Kontakt</Link></li>
         </>
       )}
       {isUserLoggedIn && isUserRegistered && (
         <>
-          
+          <li><Link to="/admin">Admin</Link></li>
+
         </>
       )}
      

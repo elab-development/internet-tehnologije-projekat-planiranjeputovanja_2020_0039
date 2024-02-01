@@ -6,12 +6,12 @@ const AttractionChart = () => {
   const [attractionsData, setAttractionsData] = useState([]);
 
   useEffect(() => {
-    // Fetch data from your API endpoint
+    
     axios.get('http://127.0.0.1:8000/api/attractions')
       .then(response => {
         const data = [['Atrakcija', 'Cena']];
 
-        // Map fetched attractions data to Google Charts format
+       
         response.data.forEach(attraction => {
           data.push([attraction.name, parseFloat(attraction.price.replace('e', '').replace(',', '.'))]);
         });

@@ -72,9 +72,7 @@ const Login = () => {
       <div className="button-container">
       <Button label="Prijavi se" onClick={handleLogin}></Button>
     </div>
-     <div className="reset-password-link">
-        <Link to="/reset-password">Zaboravili ste lozinku?</Link>
-      </div>
+    
     {loginSuccess && (
   <div className="popup">
     <p>Uspešno ste se prijavili!</p>

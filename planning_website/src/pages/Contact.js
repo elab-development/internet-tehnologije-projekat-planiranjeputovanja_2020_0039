@@ -5,7 +5,7 @@ const ContactPage = () => {
   const handleUpload = (files) => {
     // Ovde možete implementirati logiku za slanje slika na server
     console.log('Primljene slike:', files);
-    alert('Slika je uspešno primljena!');
+    alert('Fajl je uspešno primljen!');
   };
 
   return (
